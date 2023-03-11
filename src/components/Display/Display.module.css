@@ -1,0 +1,17 @@
+.display {
+    width: 140px;
+    height: 60px;
+    background-color: cornflowerblue;
+    border: 1px black solid;
+    margin-bottom: 20px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+}
+
+.display__five {
+    font-size: 40px;
+    color: red;
+}
