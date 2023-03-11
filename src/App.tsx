@@ -5,22 +5,38 @@ import {Button} from "./components/Button/Button";
 
 function App() {
 
-    let [counter, setCounter] = useState<number>(0);
-    let disabledInc: boolean = counter === 5;
-    let disabledRest: boolean = counter === 0;
+    const [counter, setCounter] = useState<number>(0);
+    const disabledInc: boolean = counter >= 5;
+    const disabledRest: boolean = counter === 0;
 
-    function onClickButton(name: string) {
-        if (name === 'inc') setCounter(counter + 1);
-        if (name === 'rest')  setCounter(0);
+    const incrButton = () => {
+        setCounter(counter + 1);
     }
 
-  return (
-    <div className="container">
-        <Display counter={counter} />
-        <Button disabledButton={disabledInc} onClick={onClickButton} name={'inc'} counter={counter} />
-        <Button disabledButton={disabledRest} onClick={onClickButton} name={'rest'} counter={counter} />
-    </div>
-  );
+    const restButton = () => {
+        setCounter(0);
+    }
+
+
+    return (
+        <div className="container">
+            <div className={'counter'}>
+                <div className={'counter__container'}>
+                    <Display counter={counter}/>
+                    <Button disabledButton={disabledInc}
+                            onClick={incrButton}
+                    >
+                        incr
+                    </Button>
+                    <Button disabledButton={disabledRest}
+                            onClick={restButton}
+                    >
+                        rest
+                    </Button>
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default App;
