@@ -1,13 +1,19 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Display} from "./components/Display/Display";
 import {Button} from "./components/Button/Button";
 
 function App() {
 
-    const [counter, setCounter] = useState<number>(0);
+    const [counter, setCounter] = useState<number>(() => {
+        return localStorage.getItem('counterValue')? Number(localStorage.getItem('counterValue')): 0
+    });
     const disabledInc: boolean = counter >= 5;
     const disabledRest: boolean = counter === 0;
+
+    useEffect(() => {
+        localStorage.setItem('counterValue', JSON.stringify(counter));
+    },[counter])
 
     const incrButton = () => {
         setCounter(counter + 1);
@@ -16,7 +22,6 @@ function App() {
     const restButton = () => {
         setCounter(0);
     }
-
 
     return (
         <div className="container">
