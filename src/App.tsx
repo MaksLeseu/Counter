@@ -6,14 +6,14 @@ import {Button} from "./components/Button/Button";
 function App() {
 
     const [counter, setCounter] = useState<number>(0);
-    const disabledInc: boolean = counter >= 5;
-    const disabledRest: boolean = counter === 0;
+    const isDisabledInc: boolean = counter >= 5;
+    const isDisabledReset: boolean = counter === 0;
 
-    const incrButton = () => {
+    const addNumberInSetCounter = () => {
         setCounter(counter + 1);
     }
 
-    const restButton = () => {
+    const zeroingCounter = () => {
         setCounter(0);
     }
 
@@ -21,15 +21,15 @@ function App() {
     return (
         <div className="container">
             <div className={'counter'}>
-                <div className={'counter__container'}>
+                <div className={'counterContainer'}>
                     <Display counter={counter}/>
-                    <Button disabledButton={disabledInc}
-                            onClick={incrButton}
+                    <Button disabledButton={isDisabledInc}
+                            onClick={addNumberInSetCounter}
                     >
                         incr
                     </Button>
-                    <Button disabledButton={disabledRest}
-                            onClick={restButton}
+                    <Button disabledButton={isDisabledReset}
+                            onClick={zeroingCounter}
                     >
                         rest
                     </Button>
