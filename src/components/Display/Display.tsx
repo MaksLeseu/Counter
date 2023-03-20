@@ -6,10 +6,12 @@ type DisplayPropsType = {
 }
 
 export function Display(props: DisplayPropsType) {
+    const {counter} = props;
 
-    let classDisplay = d.display + (props.counter === 5 ? ' ' + d.display__five: '');
+    const errorStyle: string = counter >= 5 ? d.lastValueStyle: '';
+    const displayStyle = `${d.display} ${errorStyle}`;
 
     return (
-        <div className={classDisplay}>{props.counter}</div>
+        <div className={displayStyle}>{counter}</div>
     )
 }
