@@ -9,11 +9,13 @@ type DisplayPropsType = {
 
 export const Display: FC<DisplayPropsType> = (props) => {
     const {counter, disabledValue, disabledBtnCounter} = props;
+    const displayString = `enter values and press 'set'`;
+    const displayMessage = disabledBtnCounter ? displayString : Number(counter);
 
     const errorStyle: string = counter >= disabledValue ? d.lastValueStyle: '';
-    const displayStyle = `${d.display} ${errorStyle}`;
+    const displayStyle = typeof displayMessage === 'number' ? `${d.display} ${errorStyle}` : `${d.display} ${d.displayString}`;
 
     return (
-        <div className={displayStyle}>{disabledBtnCounter ? 'enter values and press set' : counter}</div>
+        <div className={displayStyle}>{displayMessage}</div>
     )
 }

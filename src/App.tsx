@@ -8,6 +8,7 @@ function App() {
     const [counter, setCounter] = useState<number>(0);
     const [startValue, setStartValue] = useState<number>(0)
     const [disabledValue, setDisabledValue] = useState<number>(5)
+    /*alert(`disabledValue: ${disabledValue}`)*/
     const [disabledBtnCounter, setDisabledBtnCounter] = useState<boolean>(false)
 
     return (
@@ -15,6 +16,7 @@ function App() {
             <Settings
                 startValue={startValue}
                 disabledBtnCounter={disabledBtnCounter}
+                disabledValue={disabledValue}
 
                 setStartValue={setStartValue}
                 setCounter={setCounter}

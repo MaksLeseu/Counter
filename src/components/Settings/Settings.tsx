@@ -7,6 +7,7 @@ import {SettingsDisplay} from "./SettingsDisplay/SettingsDisplay";
 type SettingsPropsType = {
     startValue: number
     disabledBtnCounter: boolean
+    disabledValue: number
 
     setStartValue: any
     setCounter: any
@@ -15,15 +16,16 @@ type SettingsPropsType = {
 }
 
 export const Settings: FC<SettingsPropsType> = (props) => {
-    const {startValue, disabledBtnCounter, setStartValue, setCounter, setDisabledValue, setDisabledBtnCounter} = props
+    const {startValue, disabledBtnCounter, setStartValue, setCounter, setDisabledValue, setDisabledBtnCounter, disabledValue} = props
 
     const [maxValue, setMaxValue] = useState<number>(5)
     const isDisabledSet: boolean = disabledBtnCounter ? false : true;
 
     const setNumberValue = () => {
         setDisabledValue(maxValue)
-        setCounter(startValue)
+        /*alert(`maxValue: ${maxValue}`)*/
         setDisabledBtnCounter(false)
+        setCounter(startValue)
     }
 
     return (
