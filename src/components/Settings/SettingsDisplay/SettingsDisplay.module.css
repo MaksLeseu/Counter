@@ -1,0 +1,37 @@
+.display {
+    width: 300px;
+    height: 100px;
+    background-color: cornflowerblue;
+    border: 1px black solid;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.lastValueStyle {
+    font-size: 40px;
+    color: #DC143C;
+}
+
+.blockMaxValue {
+    display: flex;
+}
+.maxValue {
+    width: 120px;
+    height: 30px;
+    font-size: 18px;
+    font-weight: 700;
+    outline: none;
+    margin-left: 20px;
+}
+
+.blockStartValue {
+    display: flex;
+}
+.startValue {
+    width: 120px;
+    height: 30px;
+    font-size: 18px;
+    font-weight: 700;
+    outline: none;
+    margin-left: 20px;
+}

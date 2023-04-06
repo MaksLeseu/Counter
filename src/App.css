@@ -1,21 +1,7 @@
 .container {
-  padding-top: 100px;
-  width: 900px;
-  margin: 0 auto;
-}
-
-.counter {
-  border: 1px black solid;
-  display: inline-block;
-  width: 200px;
-  height: 150px;
-  background-color: #2F4F4F;
-}
-
-.counterContainer {
-  display: inline-block;
-  margin-left: 28px;
-  margin-top: 20px;
+    padding-top: 100px;
+    width: 900px;
+    margin: 0 auto;
 }
 
 

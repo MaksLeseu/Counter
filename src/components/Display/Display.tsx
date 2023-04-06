@@ -1,17 +1,19 @@
-import React from "react";
+import React, {FC} from "react";
 import d from './Display.module.css'
 
 type DisplayPropsType = {
     counter: number
+    disabledValue: number
+    disabledBtnCounter: boolean
 }
 
-export function Display(props: DisplayPropsType) {
-    const {counter} = props;
+export const Display: FC<DisplayPropsType> = (props) => {
+    const {counter, disabledValue, disabledBtnCounter} = props;
 
-    const errorStyle: string = counter >= 5 ? d.lastValueStyle: '';
+    const errorStyle: string = counter >= disabledValue ? d.lastValueStyle: '';
     const displayStyle = `${d.display} ${errorStyle}`;
 
     return (
-        <div className={displayStyle}>{counter}</div>
+        <div className={displayStyle}>{disabledBtnCounter ? 'enter values and press set' : counter}</div>
     )
 }

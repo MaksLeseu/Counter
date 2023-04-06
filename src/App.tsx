@@ -1,40 +1,35 @@
 import React, {useState} from 'react';
 import './App.css';
-import {Display} from "./components/Display/Display";
-import {Button} from "./components/Button/Button";
+import {Counter} from "./components/Counter/Counter";
+import {Settings} from "./components/Settings/Settings";
 
 function App() {
 
     const [counter, setCounter] = useState<number>(0);
-    const isDisabledInc: boolean = counter >= 5;
-    const isDisabledReset: boolean = counter === 0;
-
-    const addNumberInSetCounter = () => {
-        setCounter(counter + 1);
-    }
-
-    const zeroingCounter = () => {
-        setCounter(0);
-    }
-
+    const [startValue, setStartValue] = useState<number>(0)
+    const [disabledValue, setDisabledValue] = useState<number>(5)
+    const [disabledBtnCounter, setDisabledBtnCounter] = useState<boolean>(false)
 
     return (
-        <div className="container">
-            <div className={'counter'}>
-                <div className={'counterContainer'}>
-                    <Display counter={counter}/>
-                    <Button disabledButton={isDisabledInc}
-                            onClick={addNumberInSetCounter}
-                    >
-                        incr
-                    </Button>
-                    <Button disabledButton={isDisabledReset}
-                            onClick={zeroingCounter}
-                    >
-                        rest
-                    </Button>
-                </div>
-            </div>
+        <div className={'container'}>
+            <Settings
+                startValue={startValue}
+                disabledBtnCounter={disabledBtnCounter}
+
+                setStartValue={setStartValue}
+                setCounter={setCounter}
+                setDisabledValue={setDisabledValue}
+                setDisabledBtnCounter={setDisabledBtnCounter}
+            />
+
+            <Counter
+                counter={counter}
+                startValue={startValue}
+
+                disabledBtnCounter={disabledBtnCounter}
+                disabledValue={disabledValue}
+                setCounter={setCounter}
+            />
         </div>
     );
 }
