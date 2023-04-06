@@ -5,6 +5,7 @@ import s from './Counter.module.css'
 
 type CounterPropsType = {
     counter: number
+    maxValue: number
     startValue: number
 
     disabledBtnCounter: boolean
@@ -12,10 +13,18 @@ type CounterPropsType = {
     setCounter: any
 }
 
-export const Counter: FC<CounterPropsType> = (props) => {
-    const {counter, startValue, disabledBtnCounter, disabledValue, setCounter} = props;
+export const Counter: FC<CounterPropsType> = (
+    {
+        counter,
+        maxValue,
+        startValue,
+        disabledBtnCounter,
+        disabledValue,
+        setCounter,
+    }
+) => {
 
-    const isDisabledInc: boolean = counter >= disabledValue || disabledBtnCounter;
+    const isDisabledInc: boolean = +counter >= disabledValue || disabledBtnCounter;
     const isDisabledReset: boolean = counter === startValue || disabledBtnCounter;
 
     const addNumberInSetCounter = () => {
@@ -31,6 +40,8 @@ export const Counter: FC<CounterPropsType> = (props) => {
             <div className={s.counterContainer}>
                 <Display
                     counter={counter}
+                    maxValue={maxValue}
+                    startValue={startValue}
                     disabledValue={disabledValue}
                     disabledBtnCounter={disabledBtnCounter}
                 />

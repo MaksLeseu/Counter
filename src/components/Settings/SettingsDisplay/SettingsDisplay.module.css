@@ -15,7 +15,7 @@
 .blockMaxValue {
     display: flex;
 }
-.maxValue {
+.value {
     width: 120px;
     height: 30px;
     font-size: 18px;
@@ -27,11 +27,13 @@
 .blockStartValue {
     display: flex;
 }
-.startValue {
-    width: 120px;
-    height: 30px;
-    font-size: 18px;
-    font-weight: 700;
-    outline: none;
-    margin-left: 20px;
+
+.errorMaxValue {
+    border-color: red;
+}
+
+.errorValue {
+    border: 1px red solid;
+    background-color: red;
+    opacity: 0.6;
 }

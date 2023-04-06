@@ -6,18 +6,20 @@ import {Settings} from "./components/Settings/Settings";
 function App() {
 
     const [counter, setCounter] = useState<number>(0);
+    const [maxValue, setMaxValue] = useState<number>(5)
     const [startValue, setStartValue] = useState<number>(0)
     const [disabledValue, setDisabledValue] = useState<number>(5)
-    /*alert(`disabledValue: ${disabledValue}`)*/
     const [disabledBtnCounter, setDisabledBtnCounter] = useState<boolean>(false)
 
     return (
         <div className={'container'}>
             <Settings
+                maxValue={maxValue}
                 startValue={startValue}
                 disabledBtnCounter={disabledBtnCounter}
                 disabledValue={disabledValue}
 
+                setMaxValue={setMaxValue}
                 setStartValue={setStartValue}
                 setCounter={setCounter}
                 setDisabledValue={setDisabledValue}
@@ -26,6 +28,7 @@ function App() {
 
             <Counter
                 counter={counter}
+                maxValue={maxValue}
                 startValue={startValue}
 
                 disabledBtnCounter={disabledBtnCounter}
