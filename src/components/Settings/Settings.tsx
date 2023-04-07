@@ -36,6 +36,8 @@ export const Settings: FC<SettingsPropsType> = (
         setDisabledValue(maxValue)
         setDisabledBtnCounter(false)
         setCounter(startValue)
+        localStorage.setItem('maxValue', JSON.stringify(+maxValue))
+        localStorage.setItem('startValue', JSON.stringify(+startValue))
     }
 
     return (
