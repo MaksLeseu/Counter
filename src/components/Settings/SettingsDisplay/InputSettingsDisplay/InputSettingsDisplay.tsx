@@ -1,9 +1,8 @@
 import React, {ChangeEvent, FC} from "react";
-import s from './InputSettingsDisplay.module.css'
 
 type InputSettingsDisplayPropsType = {
     value: number
-    errorClass: any
+    errorClass: string
     onChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
 

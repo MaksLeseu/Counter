@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import d from './Display.module.css'
+import s from './Display.module.css'
 
 type DisplayPropsType = {
     counter: number
@@ -25,10 +25,10 @@ export const Display: FC<DisplayPropsType> = (
     const errorMessage = startValue < 0 ? `Incorrect value!`: '' || +maxValue === +startValue || +startValue > +maxValue ? `Incorrect value!`: '';
     const displayMessage = disabledBtnCounter ? displayMessagePressSet : +counter;
 
-    const errorStyle: string = +counter >= disabledValue ? d.lastValueStyle: '';
-    const displayStyle = typeof displayMessage === 'number' ? `${d.display} ${errorStyle}` : `${d.display} ${d.displayString}`;
+    const errorStyle: string = +counter >= disabledValue ? s.lastValueStyle: '';
+    const displayStyle = typeof displayMessage === 'number' ? `${s.display} ${errorStyle}` : `${s.display} ${s.displayMessageStyle}`;
 
     return (
-        <div className={errorMessage ? `${d.display} ${d.lastValueStyle}` :displayStyle}>{errorMessage ? errorMessage: displayMessage}</div>
+        <div className={errorMessage ? `${s.display} ${s.lastValueStyle}` :displayStyle}>{errorMessage ? errorMessage: displayMessage}</div>
     )
 }

@@ -39,34 +39,22 @@ export const SettingsDisplay: FC<SettingsDisplayPropsType> = (
     }
 
     return (
-        <div className={s.display}>
-            <div className={s.blockValue}>
+        <div className={s.settingsDisplay}>
+            <div className={s.containerValue}>
                 <p>max value:</p>
                 <InputSettingsDisplay
                     value={maxValue}
                     errorClass={errorClassEqualValues}
                     onChange={setInputMaxValue}
                 />
-                {/*<input
-                    className={errorClassEqualValues}
-                    type={"number"}
-                    onChange={setInputMaxValue}
-                    value={maxValue}
-                />*/}
             </div>
-            <div className={s.blockValue}>
+            <div className={s.containerValue}>
                 <p>start value:</p>
                 <InputSettingsDisplay
                     value={startValue}
                     errorClass={errorClassStartValue}
                     onChange={setInputStartValue}
                 />
-                {/*<input
-                    className={errorClassStartValue}
-                    type={"number"}
-                    onChange={setInputStartValue}
-                    value={startValue}
-                />*/}
             </div>
         </div>
     )

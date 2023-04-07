@@ -1,5 +1,5 @@
 import React, {FC, ReactNode} from "react";
-import b from './Button.module.css'
+import s from './Button.module.css'
 
 type ButtonPropsType = {
     disabledButton: boolean
@@ -17,7 +17,7 @@ export const Button: FC<ButtonPropsType> = (
     return (
         <button disabled={disabledButton}
                 onClick={onClick}
-                className={b.button}>
+                className={s.button}>
             {children}
         </button>
     )

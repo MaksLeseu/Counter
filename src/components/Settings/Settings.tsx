@@ -40,7 +40,7 @@ export const Settings: FC<SettingsPropsType> = (
 
     return (
         <div className={s.settings}>
-            <div className={s.counterContainer}>
+            <div className={s.settingsContainer}>
                 <SettingsDisplay
                     maxValue={maxValue}
                     startValue={startValue}
