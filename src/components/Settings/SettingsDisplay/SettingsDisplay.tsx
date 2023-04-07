@@ -1,58 +1,72 @@
-import React, {FC, useState} from "react";
+import React, {ChangeEvent, FC} from "react";
 import s from './SettingsDisplay.module.css'
+import {InputSettingsDisplay} from "./InputSettingsDisplay/InputSettingsDisplay";
 
 type SettingsDisplayPropsType = {
     maxValue: number
     startValue: number
+    startValueLessThanZero: boolean
+    checkingMaxValueAndStartValue: boolean
 
-    setStartValue: any
-    setMaxValue: any
-    setDisabledBtnCounter: any
+    setStartValue: (value: string) => void
+    setMaxValue: (value: string) => void
+    setDisabledBtnCounter: (value: boolean) => void
 }
 
 export const SettingsDisplay: FC<SettingsDisplayPropsType> = (
     {
         maxValue,
         startValue,
+        startValueLessThanZero,
+        checkingMaxValueAndStartValue,
         setStartValue,
         setMaxValue,
         setDisabledBtnCounter,
 }
 ) => {
 
-    const equalValues = +maxValue === +startValue
-    const errorClassEqualValues = equalValues ? `${s.value} ${s.errorValue}`: `${s.value}`;
-    const errorClassStartValue = startValue < 0 || equalValues ? `${s.value} ${s.errorValue}`: `${s.value}`;
+    const errorClassEqualValues = checkingMaxValueAndStartValue ? `${s.value} ${s.errorValue}`: `${s.value}`;
+    const errorClassStartValue = startValueLessThanZero || checkingMaxValueAndStartValue ? `${s.value} ${s.errorValue}`: `${s.value}`;
 
-    const inputMaxValue = (e: any) => {
+    const setInputMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
         setMaxValue(e.currentTarget.value)
         setDisabledBtnCounter(true)
     }
 
-    const inputStartValue = (e: any) => {
+    const setInputStartValue = (e: ChangeEvent<HTMLInputElement>) => {
         setStartValue(e.currentTarget.value)
         setDisabledBtnCounter(true)
     }
 
     return (
         <div className={s.display}>
-            <div className={s.blockMaxValue}>
+            <div className={s.blockValue}>
                 <p>max value:</p>
-                <input
+                <InputSettingsDisplay
+                    value={maxValue}
+                    errorClass={errorClassEqualValues}
+                    onChange={setInputMaxValue}
+                />
+                {/*<input
                     className={errorClassEqualValues}
                     type={"number"}
-                    onChange={inputMaxValue}
+                    onChange={setInputMaxValue}
                     value={maxValue}
-                />
+                />*/}
             </div>
-            <div className={s.blockStartValue}>
+            <div className={s.blockValue}>
                 <p>start value:</p>
-                <input
+                <InputSettingsDisplay
+                    value={startValue}
+                    errorClass={errorClassStartValue}
+                    onChange={setInputStartValue}
+                />
+                {/*<input
                     className={errorClassStartValue}
                     type={"number"}
-                    onChange={inputStartValue}
+                    onChange={setInputStartValue}
                     value={startValue}
-                />
+                />*/}
             </div>
         </div>
     )

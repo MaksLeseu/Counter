@@ -10,7 +10,7 @@ type CounterPropsType = {
 
     disabledBtnCounter: boolean
     disabledValue: number
-    setCounter: any
+    setCounter: (value: number) => void
 }
 
 export const Counter: FC<CounterPropsType> = (

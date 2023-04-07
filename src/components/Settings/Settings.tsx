@@ -1,6 +1,5 @@
-import React, {FC, useState} from "react";
+import React, {FC} from "react";
 import s from './Settings.module.css'
-import {Display} from "../Display/Display";
 import {Button} from "../Button/Button";
 import {SettingsDisplay} from "./SettingsDisplay/SettingsDisplay";
 
@@ -8,13 +7,12 @@ type SettingsPropsType = {
     maxValue: number
     startValue: number
     disabledBtnCounter: boolean
-    disabledValue: number
 
     setMaxValue: any
     setStartValue: any
-    setCounter: any
-    setDisabledValue: any
-    setDisabledBtnCounter: any
+    setCounter: (value: number) => void
+    setDisabledValue: (value: number) => void
+    setDisabledBtnCounter: (value: boolean) => void
 }
 
 export const Settings: FC<SettingsPropsType> = (
@@ -22,7 +20,6 @@ export const Settings: FC<SettingsPropsType> = (
         maxValue,
         startValue,
         disabledBtnCounter,
-        disabledValue,
         setMaxValue,
         setStartValue,
         setCounter,
@@ -32,10 +29,10 @@ export const Settings: FC<SettingsPropsType> = (
 ) => {
 
     const startValueLessThanZero = startValue < 0;
-    const equalValues = +maxValue === +startValue
+    const checkingMaxValueAndStartValue = +maxValue === +startValue || +startValue > +maxValue
     const isDisabledSet: boolean = disabledBtnCounter ? false : true;
 
-    const setNumberValue = () => {
+    const setSettingsValue = () => {
         setDisabledValue(maxValue)
         setDisabledBtnCounter(false)
         setCounter(startValue)
@@ -47,14 +44,16 @@ export const Settings: FC<SettingsPropsType> = (
                 <SettingsDisplay
                     maxValue={maxValue}
                     startValue={startValue}
+                    startValueLessThanZero={startValueLessThanZero}
+                    checkingMaxValueAndStartValue={checkingMaxValueAndStartValue}
 
                     setStartValue={setStartValue}
                     setMaxValue={setMaxValue}
                     setDisabledBtnCounter={setDisabledBtnCounter}
                 />
                 <div className={s.buttonContainer}>
-                    <Button disabledButton={isDisabledSet || startValueLessThanZero || equalValues}
-                            onClick={setNumberValue}
+                    <Button disabledButton={isDisabledSet || startValueLessThanZero || checkingMaxValueAndStartValue}
+                            onClick={setSettingsValue}
                     >
                         set
                     </Button>

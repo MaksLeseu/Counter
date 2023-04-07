@@ -20,10 +20,10 @@ export const Display: FC<DisplayPropsType> = (
     }
  ) => {
 
-    const displayString = `enter values and press 'set'`;
+    const displayMessagePressSet = `enter values and press 'set'`;
 
-    const errorMessage = startValue < 0 ? `Incorrect value!`: '' || +maxValue === +startValue ? `Incorrect value!`: '';
-    const displayMessage = disabledBtnCounter ? displayString : +counter;
+    const errorMessage = startValue < 0 ? `Incorrect value!`: '' || +maxValue === +startValue || +startValue > +maxValue ? `Incorrect value!`: '';
+    const displayMessage = disabledBtnCounter ? displayMessagePressSet : +counter;
 
     const errorStyle: string = +counter >= disabledValue ? d.lastValueStyle: '';
     const displayStyle = typeof displayMessage === 'number' ? `${d.display} ${errorStyle}` : `${d.display} ${d.displayString}`;

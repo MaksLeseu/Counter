@@ -12,9 +12,6 @@
     color: #DC143C;
 }
 
-.blockMaxValue {
-    display: flex;
-}
 .value {
     width: 120px;
     height: 30px;
@@ -24,7 +21,7 @@
     margin-left: 20px;
 }
 
-.blockStartValue {
+.blockValue {
     display: flex;
 }
 

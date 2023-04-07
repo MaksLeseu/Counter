@@ -17,7 +17,6 @@ function App() {
                 maxValue={maxValue}
                 startValue={startValue}
                 disabledBtnCounter={disabledBtnCounter}
-                disabledValue={disabledValue}
 
                 setMaxValue={setMaxValue}
                 setStartValue={setStartValue}
