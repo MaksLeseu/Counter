@@ -1,5 +1,5 @@
 import React, {FC, useState} from "react";
-import {Display} from "../Display/Display";
+import {Display} from "./Display/Display";
 import {Button} from "../Button/Button";
 import s from './Counter.module.css'
 

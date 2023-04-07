@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Counter} from "./components/Counter/Counter";
 import {Settings} from "./components/Settings/Settings";
-import {restoreState, saveState} from "./localStorage/localStorage";
+import {restoreState, saveState} from "./common/localStorage/localStorage";
 
 function App() {
     const [counter, setCounter] = useState<number>(0);
