@@ -2,22 +2,26 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Counter} from "./components/Counter/Counter";
 import {Settings} from "./components/Settings/Settings";
+import {restoreState, saveState} from "./localStorage/localStorage";
 
 function App() {
-
-    const [counter, setCounter] = useState<number>(() => {
-        return localStorage.getItem('startValue') ? Number(localStorage.getItem('startValue')): 0
-    });
-    const [maxValue, setMaxValue] = useState<number>(() => {
-        return localStorage.getItem('maxValue') ? Number(localStorage.getItem('maxValue')): 5
-    })
-    const [startValue, setStartValue] = useState<number>(() => {
-        return localStorage.getItem('startValue') ? Number(localStorage.getItem('startValue')): 0
-    })
-    const [disabledValue, setDisabledValue] = useState<number>(() => {
-        return localStorage.getItem('maxValue') ? Number(localStorage.getItem('maxValue')): 5
-    })
+    const [counter, setCounter] = useState<number>(0);
+    const [maxValue, setMaxValue] = useState<number>(5)
+    const [startValue, setStartValue] = useState<number>(0)
+    const [disabledValue, setDisabledValue] = useState<number>(5)
     const [disabledBtnCounter, setDisabledBtnCounter] = useState<boolean>(false)
+
+    const save = (maxValue: number, startValue: number) => {
+        saveState('maxValue', maxValue)
+        saveState('startValue', startValue)
+    }
+
+    useEffect(() => {
+        setMaxValue(restoreState('maxValue', ''))
+        setDisabledValue(restoreState('maxValue', ''))
+        setStartValue(restoreState('startValue', ''))
+        setCounter(restoreState('startValue', ''))
+    }, [])
 
     return (
         <div className={'container'}>
@@ -31,6 +35,7 @@ function App() {
                 setCounter={setCounter}
                 setDisabledValue={setDisabledValue}
                 setDisabledBtnCounter={setDisabledBtnCounter}
+                save={save}
             />
 
             <Counter

@@ -13,6 +13,7 @@ type SettingsPropsType = {
     setCounter: (value: number) => void
     setDisabledValue: (value: number) => void
     setDisabledBtnCounter: (value: boolean) => void
+    save: (maxValue: number, startValue: number) => void
 }
 
 export const Settings: FC<SettingsPropsType> = (
@@ -24,7 +25,8 @@ export const Settings: FC<SettingsPropsType> = (
         setStartValue,
         setCounter,
         setDisabledValue,
-        setDisabledBtnCounter
+        setDisabledBtnCounter,
+        save,
     }
 ) => {
 
@@ -36,8 +38,9 @@ export const Settings: FC<SettingsPropsType> = (
         setDisabledValue(maxValue)
         setDisabledBtnCounter(false)
         setCounter(startValue)
-        localStorage.setItem('maxValue', JSON.stringify(+maxValue))
-        localStorage.setItem('startValue', JSON.stringify(+startValue))
+        /*localStorage.setItem('maxValue', JSON.stringify(+maxValue))
+        localStorage.setItem('startValue', JSON.stringify(+startValue))*/
+        save(maxValue, startValue)
     }
 
     return (
