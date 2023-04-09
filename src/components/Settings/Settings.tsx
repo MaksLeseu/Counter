@@ -32,7 +32,6 @@ export const Settings: FC<SettingsPropsType> = (
 
     const startValueLessThanZero = startValue < 0;
     const checkingMaxValueAndStartValue = +maxValue === +startValue || +startValue > +maxValue
-    const isDisabledSet: boolean = disabledBtnCounter ? false : true;
 
     const setSettingsValue = () => {
         setDisabledValue(maxValue)
@@ -57,7 +56,7 @@ export const Settings: FC<SettingsPropsType> = (
                     setDisabledBtnCounter={setDisabledBtnCounter}
                 />
                 <div className={s.buttonContainer}>
-                    <Button disabledButton={isDisabledSet || startValueLessThanZero || checkingMaxValueAndStartValue}
+                    <Button disabledButton={!disabledBtnCounter || startValueLessThanZero || checkingMaxValueAndStartValue}
                             onClick={setSettingsValue}
                     >
                         set
