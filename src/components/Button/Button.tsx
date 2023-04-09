@@ -7,13 +7,8 @@ type ButtonPropsType = {
     onClick: () => void
 }
 
-export const Button: FC<ButtonPropsType> = (
-    {
-        disabledButton,
-        children,
-        onClick,
-    }
-) => {
+export const Button: FC<ButtonPropsType> = (props) => {
+    const {disabledButton, children, onClick,} = props
     return (
         <button disabled={disabledButton}
                 onClick={onClick}

@@ -6,13 +6,8 @@ type InputSettingsDisplayPropsType = {
     onChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-export const InputSettingsDisplay: FC<InputSettingsDisplayPropsType> = (
-    {
-        value,
-        errorClass,
-        onChange,
-    }
-) => {
+export const InputSettingsDisplay: FC<InputSettingsDisplayPropsType> = (props) => {
+    const {value, errorClass, onChange,} = props
 
     return (
         <input

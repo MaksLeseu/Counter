@@ -13,22 +13,14 @@ type CounterPropsType = {
     setCounter: (value: number) => void
 }
 
-export const Counter: FC<CounterPropsType> = (
-    {
-        counter,
-        maxValue,
-        startValue,
-        disabledBtnCounter,
-        disabledValue,
-        setCounter,
-    }
-) => {
+export const Counter: FC<CounterPropsType> = (props) => {
+    const {counter, maxValue, startValue, disabledBtnCounter, disabledValue, setCounter,} = props
 
-    const isDisabledInc: boolean = +counter >= disabledValue || disabledBtnCounter;
+    const isDisabledInc: boolean = counter >= disabledValue || disabledBtnCounter;
     const isDisabledReset: boolean = counter === startValue || disabledBtnCounter;
 
     const addNumberInSetCounter = () => {
-        setCounter(+counter + 1);
+        setCounter(counter + 1);
     }
 
     const zeroingCounter = () => {

@@ -2,11 +2,6 @@ import React, {ChangeEvent, FC} from "react";
 import s from './SettingsDisplay.module.css'
 import {InputSettingsDisplay} from "./InputSettingsDisplay/InputSettingsDisplay";
 
-export type SetMaxValueType<T> = (value: T extends 'string' ? ValueStringType : ValueNumberType) => void
-type ValueNumberType = number
-type ValueStringType = string
-
-
 type SettingsDisplayPropsType = {
     maxValue: number
     startValue: number
@@ -18,17 +13,9 @@ type SettingsDisplayPropsType = {
     setDisabledBtnCounter: (value: boolean) => void
 }
 
-export const SettingsDisplay: FC<SettingsDisplayPropsType> = (
-    {
-        maxValue,
-        startValue,
-        startValueLessThanZero,
-        checkingMaxValueAndStartValue,
-        setStartValue,
-        setMaxValue,
-        setDisabledBtnCounter,
-}
-) => {
+export const SettingsDisplay: FC<SettingsDisplayPropsType> = (props) => {
+    const {maxValue, startValue, startValueLessThanZero, checkingMaxValueAndStartValue,
+        setStartValue, setMaxValue, setDisabledBtnCounter,} = props
 
     const errorClassEqualValues = checkingMaxValueAndStartValue ? `${s.value} ${s.errorValue}`: `${s.value}`;
     const errorClassStartValue = startValueLessThanZero || checkingMaxValueAndStartValue ? `${s.value} ${s.errorValue}`: `${s.value}`;

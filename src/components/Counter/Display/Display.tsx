@@ -10,15 +10,8 @@ type DisplayPropsType = {
     disabledBtnCounter: boolean
 }
 
-export const Display: FC<DisplayPropsType> = (
-    {
-        counter,
-        maxValue,
-        startValue,
-        disabledValue,
-        disabledBtnCounter,
-    }
- ) => {
+export const Display: FC<DisplayPropsType> = (props) => {
+    const {counter, maxValue, startValue, disabledValue, disabledBtnCounter,} = props
 
     const displayMessagePressSet = `enter values and press 'set'`;
 

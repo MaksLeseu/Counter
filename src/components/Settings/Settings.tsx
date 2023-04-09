@@ -16,29 +16,17 @@ type SettingsPropsType = {
     saveValueInLocalStorage: (maxValue: number, startValue: number) => void
 }
 
-export const Settings: FC<SettingsPropsType> = (
-    {
-        maxValue,
-        startValue,
-        disabledBtnCounter,
-        setMaxValue,
-        setStartValue,
-        setCounter,
-        setDisabledValue,
-        setDisabledBtnCounter,
-        saveValueInLocalStorage,
-    }
-) => {
+export const Settings: FC<SettingsPropsType> = (props) => {
+    const {maxValue, startValue, disabledBtnCounter, setMaxValue, setStartValue,
+        setCounter, setDisabledValue, setDisabledBtnCounter, saveValueInLocalStorage,} = props
 
     const startValueLessThanZero = startValue < 0;
-    const checkingMaxValueAndStartValue = +maxValue === +startValue || +startValue > +maxValue
+    const checkingMaxValueAndStartValue = maxValue === startValue || startValue > maxValue
 
     const setSettingsValue = () => {
         setDisabledValue(maxValue)
         setDisabledBtnCounter(false)
         setCounter(startValue)
-        /*localStorage.setItem('maxValue', JSON.stringify(+maxValue))
-        localStorage.setItem('startValue', JSON.stringify(+startValue))*/
         saveValueInLocalStorage(maxValue, startValue)
     }
 
