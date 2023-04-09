@@ -11,7 +11,7 @@ function App() {
     const [disabledValue, setDisabledValue] = useState<number>(5)
     const [disabledBtnCounter, setDisabledBtnCounter] = useState<boolean>(false)
 
-    const save = (maxValue: number, startValue: number) => {
+    const saveValueInLocalStorage = (maxValue: number, startValue: number) => {
         saveState<number>('maxValue', maxValue)
         saveState<number>('startValue', startValue)
     }
@@ -35,7 +35,7 @@ function App() {
                 setCounter={setCounter}
                 setDisabledValue={setDisabledValue}
                 setDisabledBtnCounter={setDisabledBtnCounter}
-                save={save}
+                saveValueInLocalStorage={saveValueInLocalStorage}
             />
 
             <Counter
