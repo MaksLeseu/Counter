@@ -12,15 +12,15 @@ function App() {
     const [disabledBtnCounter, setDisabledBtnCounter] = useState<boolean>(false)
 
     const save = (maxValue: number, startValue: number) => {
-        saveState('maxValue', maxValue)
-        saveState('startValue', startValue)
+        saveState<number>('maxValue', maxValue)
+        saveState<number>('startValue', startValue)
     }
 
     useEffect(() => {
-        setMaxValue(restoreState('maxValue', ''))
-        setDisabledValue(restoreState('maxValue', ''))
-        setStartValue(restoreState('startValue', ''))
-        setCounter(restoreState('startValue', ''))
+        setMaxValue(restoreState<number>('maxValue', 5))
+        setDisabledValue(restoreState<number>('maxValue', 5))
+        setStartValue(restoreState<number>('startValue', 0))
+        setCounter(restoreState<number>('startValue', 0))
     }, [])
 
     return (
