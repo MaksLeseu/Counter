@@ -8,8 +8,8 @@ type SettingsPropsType = {
     startValue: number
     disabledBtnCounter: boolean
 
-    setMaxValue: any
-    setStartValue: any
+    setMaxValue: (value: number) => void
+    setStartValue: (value: number) => void
     setCounter: (value: number) => void
     setDisabledValue: (value: number) => void
     setDisabledBtnCounter: (value: boolean) => void
