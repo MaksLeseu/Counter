@@ -1,23 +1,22 @@
-import React, {FC, useState} from "react";
+import React, {FC} from "react";
 import {Display} from "./Display/Display";
 import {Button} from "../Button/Button";
 import s from './Counter.module.css'
+import {NavLink} from "react-router-dom";
 
 type CounterPropsType = {
     counter: number
-    maxValue: number
     startValue: number
 
-    disabledBtnCounter: boolean
     disabledValue: number
     setCounter: (value: number) => void
 }
 
 export const Counter: FC<CounterPropsType> = (props) => {
-    const {counter, maxValue, startValue, disabledBtnCounter, disabledValue, setCounter,} = props
+    const {counter, startValue, disabledValue, setCounter,} = props
 
-    const isDisabledInc: boolean = counter >= disabledValue || disabledBtnCounter;
-    const isDisabledReset: boolean = counter === startValue || disabledBtnCounter;
+    const isDisabledInc: boolean = counter >= disabledValue;
+    const isDisabledReset: boolean = counter === startValue;
 
     const addNumberInSetCounter = () => {
         setCounter(counter + 1);
@@ -32,10 +31,7 @@ export const Counter: FC<CounterPropsType> = (props) => {
             <div className={s.counterContainer}>
                 <Display
                     counter={counter}
-                    maxValue={maxValue}
-                    startValue={startValue}
                     disabledValue={disabledValue}
-                    disabledBtnCounter={disabledBtnCounter}
                 />
                 <div className={s.buttonContainer}>
                     <Button disabledButton={isDisabledInc}
@@ -48,6 +44,12 @@ export const Counter: FC<CounterPropsType> = (props) => {
                     >
                         rest
                     </Button>
+                    <NavLink to={'/settings'}>
+                        <Button
+                        >
+                            set
+                        </Button>
+                    </NavLink>
                 </div>
             </div>
         </div>

@@ -3,13 +3,13 @@ import './App.css';
 import {Counter} from "./components/Counter/Counter";
 import {Settings} from "./components/Settings/Settings";
 import {restoreState, saveState} from "./common/localStorage/localStorage";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 function App() {
     const [counter, setCounter] = useState<number>(0);
     const [maxValue, setMaxValue] = useState<number>(5)
     const [startValue, setStartValue] = useState<number>(0)
     const [disabledValue, setDisabledValue] = useState<number>(5)
-    const [disabledBtnCounter, setDisabledBtnCounter] = useState<boolean>(false)
 
     const saveValueInLocalStorage = (maxValue: number, startValue: number) => {
         saveState<number>('maxValue', maxValue)
@@ -24,31 +24,35 @@ function App() {
     }, [])
 
     return (
-        <div className={'container'}>
-            <Settings
-                maxValue={maxValue}
-                startValue={startValue}
-                disabledBtnCounter={disabledBtnCounter}
+        <BrowserRouter>
+            <div className={'container'}>
+                <Routes>
+                    <Route path={'/'} element={
+                        <Counter
+                        counter={counter}
+                        startValue={startValue}
 
-                setMaxValue={setMaxValue}
-                setStartValue={setStartValue}
-                setCounter={setCounter}
-                setDisabledValue={setDisabledValue}
-                setDisabledBtnCounter={setDisabledBtnCounter}
-                saveValueInLocalStorage={saveValueInLocalStorage}
-            />
+                        disabledValue={disabledValue}
+                        setCounter={setCounter}
+                    />
+                    } />
+                    <Route path={'/settings'} element={
+                        <Settings
+                            maxValue={maxValue}
+                            startValue={startValue}
 
-            <Counter
-                counter={counter}
-                maxValue={maxValue}
-                startValue={startValue}
-
-                disabledBtnCounter={disabledBtnCounter}
-                disabledValue={disabledValue}
-                setCounter={setCounter}
-            />
-        </div>
+                            setMaxValue={setMaxValue}
+                            setStartValue={setStartValue}
+                            setCounter={setCounter}
+                            setDisabledValue={setDisabledValue}
+                            saveValueInLocalStorage={saveValueInLocalStorage}
+                        />
+                    } />
+                </Routes>
+            </div>
+        </BrowserRouter>
     );
 }
 
 export default App;
+

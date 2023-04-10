@@ -10,24 +10,21 @@ type SettingsDisplayPropsType = {
 
     setStartValue: (value: number) => void
     setMaxValue: (value: number) => void
-    setDisabledBtnCounter: (value: boolean) => void
 }
 
 export const SettingsDisplay: FC<SettingsDisplayPropsType> = (props) => {
     const {maxValue, startValue, startValueLessThanZero, checkingMaxValueAndStartValue,
-        setStartValue, setMaxValue, setDisabledBtnCounter,} = props
+        setStartValue, setMaxValue,} = props
 
     const errorClassEqualValues = checkingMaxValueAndStartValue ? `${s.value} ${s.errorValue}`: `${s.value}`;
     const errorClassStartValue = startValueLessThanZero || checkingMaxValueAndStartValue ? `${s.value} ${s.errorValue}`: `${s.value}`;
 
     const setInputMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
         setMaxValue(Number(e.currentTarget.value))
-        setDisabledBtnCounter(true)
     }
 
     const setInputStartValue = (e: ChangeEvent<HTMLInputElement>) => {
         setStartValue(Number(e.currentTarget.value))
-        setDisabledBtnCounter(true)
     }
 
     return (
