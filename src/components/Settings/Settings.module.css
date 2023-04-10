@@ -8,8 +8,9 @@
 }
 
 .settingsContainer {
-    display: inline-block;
-    margin-left: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-top: 20px;
 }
 
