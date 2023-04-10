@@ -1,18 +1,18 @@
 import React, {FC, ReactNode} from "react";
-import b from './Button.module.css'
+import s from './Button.module.css'
 
 type ButtonPropsType = {
-    onClick: () => void
     disabledButton: boolean
     children: ReactNode
+    onClick: () => void
 }
 
 export const Button: FC<ButtonPropsType> = (props) => {
-    const {children, disabledButton, onClick} = props;
+    const {disabledButton, children, onClick,} = props
     return (
         <button disabled={disabledButton}
                 onClick={onClick}
-                className={b.button}>
+                className={s.button}>
             {children}
         </button>
     )

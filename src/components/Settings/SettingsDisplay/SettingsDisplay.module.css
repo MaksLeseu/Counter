@@ -1,0 +1,27 @@
+.settingsDisplay {
+    width: 300px;
+    height: 100px;
+    background-color: cornflowerblue;
+    border: 1px black solid;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.containerValue {
+    display: flex;
+}
+
+.value {
+    width: 120px;
+    height: 30px;
+    font-size: 18px;
+    font-weight: 700;
+    outline: none;
+    margin-left: 20px;
+}
+
+.errorValue {
+    border: 1px red solid;
+    background-color: red;
+    opacity: 0.6;
+}

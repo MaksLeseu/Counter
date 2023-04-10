@@ -1,40 +1,52 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
-import {Display} from "./components/Display/Display";
-import {Button} from "./components/Button/Button";
+import {Counter} from "./components/Counter/Counter";
+import {Settings} from "./components/Settings/Settings";
+import {restoreState, saveState} from "./common/localStorage/localStorage";
 
 function App() {
-
     const [counter, setCounter] = useState<number>(0);
-    const isDisabledInc: boolean = counter >= 5;
-    const isDisabledReset: boolean = counter === 0;
+    const [maxValue, setMaxValue] = useState<number>(5)
+    const [startValue, setStartValue] = useState<number>(0)
+    const [disabledValue, setDisabledValue] = useState<number>(5)
+    const [disabledBtnCounter, setDisabledBtnCounter] = useState<boolean>(false)
 
-    const addNumberInSetCounter = () => {
-        setCounter(counter + 1);
+    const saveValueInLocalStorage = (maxValue: number, startValue: number) => {
+        saveState<number>('maxValue', maxValue)
+        saveState<number>('startValue', startValue)
     }
 
-    const zeroingCounter = () => {
-        setCounter(0);
-    }
-
+    useEffect(() => {
+        setMaxValue(restoreState<number>('maxValue', 5))
+        setDisabledValue(restoreState<number>('maxValue', 5))
+        setStartValue(restoreState<number>('startValue', 0))
+        setCounter(restoreState<number>('startValue', 0))
+    }, [])
 
     return (
-        <div className="container">
-            <div className={'counter'}>
-                <div className={'counterContainer'}>
-                    <Display counter={counter}/>
-                    <Button disabledButton={isDisabledInc}
-                            onClick={addNumberInSetCounter}
-                    >
-                        incr
-                    </Button>
-                    <Button disabledButton={isDisabledReset}
-                            onClick={zeroingCounter}
-                    >
-                        rest
-                    </Button>
-                </div>
-            </div>
+        <div className={'container'}>
+            <Settings
+                maxValue={maxValue}
+                startValue={startValue}
+                disabledBtnCounter={disabledBtnCounter}
+
+                setMaxValue={setMaxValue}
+                setStartValue={setStartValue}
+                setCounter={setCounter}
+                setDisabledValue={setDisabledValue}
+                setDisabledBtnCounter={setDisabledBtnCounter}
+                saveValueInLocalStorage={saveValueInLocalStorage}
+            />
+
+            <Counter
+                counter={counter}
+                maxValue={maxValue}
+                startValue={startValue}
+
+                disabledBtnCounter={disabledBtnCounter}
+                disabledValue={disabledValue}
+                setCounter={setCounter}
+            />
         </div>
     );
 }

@@ -1,0 +1,56 @@
+import React, {FC} from "react";
+import s from './Settings.module.css'
+import {Button} from "../Button/Button";
+import {SettingsDisplay} from "./SettingsDisplay/SettingsDisplay";
+
+type SettingsPropsType = {
+    maxValue: number
+    startValue: number
+    disabledBtnCounter: boolean
+
+    setMaxValue: (value: number) => void
+    setStartValue: (value: number) => void
+    setCounter: (value: number) => void
+    setDisabledValue: (value: number) => void
+    setDisabledBtnCounter: (value: boolean) => void
+    saveValueInLocalStorage: (maxValue: number, startValue: number) => void
+}
+
+export const Settings: FC<SettingsPropsType> = (props) => {
+    const {maxValue, startValue, disabledBtnCounter, setMaxValue, setStartValue,
+        setCounter, setDisabledValue, setDisabledBtnCounter, saveValueInLocalStorage,} = props
+
+    const startValueLessThanZero = startValue < 0;
+    const checkingMaxValueAndStartValue = maxValue === startValue || startValue > maxValue
+
+    const setSettingsValue = () => {
+        setDisabledValue(maxValue)
+        setDisabledBtnCounter(false)
+        setCounter(startValue)
+        saveValueInLocalStorage(maxValue, startValue)
+    }
+
+    return (
+        <div className={s.settings}>
+            <div className={s.settingsContainer}>
+                <SettingsDisplay
+                    maxValue={maxValue}
+                    startValue={startValue}
+                    startValueLessThanZero={startValueLessThanZero}
+                    checkingMaxValueAndStartValue={checkingMaxValueAndStartValue}
+
+                    setStartValue={setStartValue}
+                    setMaxValue={setMaxValue}
+                    setDisabledBtnCounter={setDisabledBtnCounter}
+                />
+                <div className={s.buttonContainer}>
+                    <Button disabledButton={!disabledBtnCounter || startValueLessThanZero || checkingMaxValueAndStartValue}
+                            onClick={setSettingsValue}
+                    >
+                        set
+                    </Button>
+                </div>
+            </div>
+        </div>
+    )
+}

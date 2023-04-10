@@ -1,0 +1,19 @@
+.settings {
+    border: 1px black solid;
+    display: inline-block;
+    width: 350px;
+    height: 200px;
+    background-color: #2F4F4F;
+    margin-right: 100px;
+}
+
+.settingsContainer {
+    display: inline-block;
+    margin-left: 28px;
+    margin-top: 20px;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+}
