@@ -1,30 +1,29 @@
 import React, {ChangeEvent, FC} from "react";
 import s from './SettingsDisplay.module.css'
 import {InputSettingsDisplay} from "./InputSettingsDisplay/InputSettingsDisplay";
+import {useDispatch} from "react-redux";
+import {setMaxValueAC, setStartValueAC} from "../../../reducers/counter-reducer";
 
 type SettingsDisplayPropsType = {
     maxValue: number
     startValue: number
     startValueLessThanZero: boolean
     checkingMaxValueAndStartValue: boolean
-
-    setStartValue: (value: number) => void
-    setMaxValue: (value: number) => void
 }
 
 export const SettingsDisplay: FC<SettingsDisplayPropsType> = (props) => {
-    const {maxValue, startValue, startValueLessThanZero, checkingMaxValueAndStartValue,
-        setStartValue, setMaxValue,} = props
+    const {maxValue, startValue, startValueLessThanZero, checkingMaxValueAndStartValue,} = props
+    const dispatch = useDispatch()
 
     const errorClassEqualValues = checkingMaxValueAndStartValue ? `${s.value} ${s.errorValue}`: `${s.value}`;
     const errorClassStartValue = startValueLessThanZero || checkingMaxValueAndStartValue ? `${s.value} ${s.errorValue}`: `${s.value}`;
 
     const setInputMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
-        setMaxValue(Number(e.currentTarget.value))
+        dispatch(setMaxValueAC(Number(e.currentTarget.value)))
     }
 
     const setInputStartValue = (e: ChangeEvent<HTMLInputElement>) => {
-        setStartValue(Number(e.currentTarget.value))
+        dispatch(setStartValueAC(Number(e.currentTarget.value)))
     }
 
     return (

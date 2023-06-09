@@ -3,28 +3,26 @@ import s from './Settings.module.css'
 import {Button} from "../Button/Button";
 import {SettingsDisplay} from "./SettingsDisplay/SettingsDisplay";
 import {NavLink} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {setCounterAC, setDisabledValueAC} from "../../reducers/counter-reducer";
 
 type SettingsPropsType = {
     maxValue: number
     startValue: number
 
-    setMaxValue: (value: number) => void
-    setStartValue: (value: number) => void
-    setCounter: (value: number) => void
-    setDisabledValue: (value: number) => void
     saveValueInLocalStorage: (maxValue: number, startValue: number) => void
 }
 
 export const Settings: FC<SettingsPropsType> = (props) => {
-    const {maxValue, startValue, setMaxValue, setStartValue,
-        setCounter, setDisabledValue, saveValueInLocalStorage,} = props
+    const {maxValue, startValue, saveValueInLocalStorage,} = props
+    const dispatch = useDispatch()
 
     const startValueLessThanZero = startValue < 0;
     const checkingMaxValueAndStartValue = maxValue === startValue || startValue > maxValue
 
     const setSettingsValue = () => {
-        setDisabledValue(maxValue)
-        setCounter(startValue)
+        dispatch(setDisabledValueAC(maxValue))
+        dispatch(setCounterAC(startValue))
         saveValueInLocalStorage(maxValue, startValue)
     }
 
@@ -36,9 +34,6 @@ export const Settings: FC<SettingsPropsType> = (props) => {
                     startValue={startValue}
                     startValueLessThanZero={startValueLessThanZero}
                     checkingMaxValueAndStartValue={checkingMaxValueAndStartValue}
-
-                    setStartValue={setStartValue}
-                    setMaxValue={setMaxValue}
                 />
                 <div className={s.buttonContainer}>
                     <NavLink to={'/'}>

@@ -9,15 +9,11 @@ import {AppRootStateType} from "./reducers/store";
 import {setCounterAC, setDisabledValueAC, setMaxValueAC, setStartValueAC} from "./reducers/counter-reducer";
 
 function App() {
-    /*const [counter, setCounter] = useState<number>(0);
-    const [maxValue, setMaxValue] = useState<number>(5)
-    const [startValue, setStartValue] = useState<number>(0)
-    const [disabledValue, setDisabledValue] = useState<number>(5)*/
 
-    const counter = useSelector<AppRootStateType>(state => state.counter.counter)
-    const maxValue = useSelector<AppRootStateType>(state => state.counter.maxValue)
-    const startValue = useSelector<AppRootStateType>(state => state.counter.startValue)
-    const disabledValue = useSelector<AppRootStateType>(state => state.counter.disabledValue)
+    const counter = useSelector<AppRootStateType, number>(state => state.counter.counter)
+    const maxValue = useSelector<AppRootStateType, number>(state => state.counter.maxValue)
+    const startValue = useSelector<AppRootStateType, number>(state => state.counter.startValue)
+    const disabledValue = useSelector<AppRootStateType, number>(state => state.counter.disabledValue)
 
     const dispatch = useDispatch()
 
@@ -44,7 +40,6 @@ function App() {
                         startValue={startValue}
 
                         disabledValue={disabledValue}
-                        setCounter={setCounter}
                     />
                     } />
                     <Route path={'/settings'} element={
@@ -52,10 +47,6 @@ function App() {
                             maxValue={maxValue}
                             startValue={startValue}
 
-                            setMaxValue={setMaxValue}
-                            setStartValue={setStartValue}
-                            setCounter={setCounter}
-                            setDisabledValue={setDisabledValue}
                             saveValueInLocalStorage={saveValueInLocalStorage}
                         />
                     } />
