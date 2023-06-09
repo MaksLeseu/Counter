@@ -6,6 +6,11 @@ type StateType = {
     disabledValue: number
 }
 
+type ActionType = {
+    type: 'SET_MAX_VALUE' | 'SET_DISABLED_VALUE' | 'SET_START_VALUE' | 'SET_COUNTER'
+    value: number
+}
+
 const initialState: StateType = {
     counter: 0,
     maxValue: 5,
@@ -13,7 +18,7 @@ const initialState: StateType = {
     disabledValue: 0
 }
 
-export const counterReducer = (state = initialState, action: any) => {
+export const counterReducer = (state = initialState, action: ActionType) => {
     switch (action.type) {
         case 'SET_MAX_VALUE' :
             return {
@@ -36,7 +41,7 @@ export const counterReducer = (state = initialState, action: any) => {
     }
 }
 
-export const setMaxValueAC = (value: number) => ({type: 'SET_MAX_VALUE', value})
-export const setDisabledValueAC = (value: number) => ({type: 'SET_DISABLED_VALUE', value})
-export const setStartValueAC = (value: number) =>({type: 'SET_START_VALUE', value})
-export const setCounterAC = (value: number) => ({type: 'SET_COUNTER', value})
+export const setMaxValueAC = (value: number): ActionType => ({type: 'SET_MAX_VALUE', value})
+export const setDisabledValueAC = (value: number): ActionType => ({type: 'SET_DISABLED_VALUE', value})
+export const setStartValueAC = (value: number): ActionType =>({type: 'SET_START_VALUE', value})
+export const setCounterAC = (value: number): ActionType => ({type: 'SET_COUNTER', value})

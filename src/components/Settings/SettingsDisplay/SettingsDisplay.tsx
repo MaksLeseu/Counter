@@ -3,6 +3,7 @@ import s from './SettingsDisplay.module.css'
 import {InputSettingsDisplay} from "./InputSettingsDisplay/InputSettingsDisplay";
 import {useDispatch} from "react-redux";
 import {setMaxValueAC, setStartValueAC} from "../../../reducers/counter-reducer";
+import {Dispatch} from "redux";
 
 type SettingsDisplayPropsType = {
     maxValue: number
@@ -13,7 +14,7 @@ type SettingsDisplayPropsType = {
 
 export const SettingsDisplay: FC<SettingsDisplayPropsType> = (props) => {
     const {maxValue, startValue, startValueLessThanZero, checkingMaxValueAndStartValue,} = props
-    const dispatch = useDispatch()
+    const dispatch: Dispatch = useDispatch()
 
     const errorClassEqualValues = checkingMaxValueAndStartValue ? `${s.value} ${s.errorValue}`: `${s.value}`;
     const errorClassStartValue = startValueLessThanZero || checkingMaxValueAndStartValue ? `${s.value} ${s.errorValue}`: `${s.value}`;

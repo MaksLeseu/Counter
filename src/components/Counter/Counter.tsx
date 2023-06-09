@@ -5,6 +5,7 @@ import s from './Counter.module.css'
 import {NavLink} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {setCounterAC} from "../../reducers/counter-reducer";
+import {Dispatch} from "redux";
 
 type CounterPropsType = {
     counter: number
@@ -15,7 +16,7 @@ type CounterPropsType = {
 
 export const Counter: FC<CounterPropsType> = (props) => {
     const {counter, startValue, disabledValue,} = props
-    const dispatch = useDispatch()
+    const dispatch: Dispatch = useDispatch()
 
     const isDisabledInc: boolean = counter >= disabledValue;
     const isDisabledReset: boolean = counter === startValue;

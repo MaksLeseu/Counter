@@ -7,6 +7,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./reducers/store";
 import {setCounterAC, setDisabledValueAC, setMaxValueAC, setStartValueAC} from "./reducers/counter-reducer";
+import {Dispatch} from "redux";
 
 function App() {
 
@@ -15,7 +16,7 @@ function App() {
     const startValue = useSelector<AppRootStateType, number>(state => state.counter.startValue)
     const disabledValue = useSelector<AppRootStateType, number>(state => state.counter.disabledValue)
 
-    const dispatch = useDispatch()
+    const dispatch: Dispatch = useDispatch()
 
 
     const saveValueInLocalStorage = (maxValue: number, startValue: number) => {

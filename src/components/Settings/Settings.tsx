@@ -5,6 +5,7 @@ import {SettingsDisplay} from "./SettingsDisplay/SettingsDisplay";
 import {NavLink} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {setCounterAC, setDisabledValueAC} from "../../reducers/counter-reducer";
+import {Dispatch} from "redux";
 
 type SettingsPropsType = {
     maxValue: number
@@ -15,7 +16,7 @@ type SettingsPropsType = {
 
 export const Settings: FC<SettingsPropsType> = (props) => {
     const {maxValue, startValue, saveValueInLocalStorage,} = props
-    const dispatch = useDispatch()
+    const dispatch: Dispatch = useDispatch()
 
     const startValueLessThanZero = startValue < 0;
     const checkingMaxValueAndStartValue = maxValue === startValue || startValue > maxValue
