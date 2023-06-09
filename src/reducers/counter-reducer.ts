@@ -19,3 +19,8 @@ export const counterReducer = (state = initialState, action: any) => {
         default: return state
     }
 }
+
+export const setMaxValueAC = (value: number) => ({type: '', value})
+export const setDisabledValueAC = (value: number) => ({type: '', value})
+export const setStartValueAC = (value: number) =>({type: '', value})
+export const setCounterAC = (value: number) => ({type: '', value})
