@@ -29,5 +29,5 @@ export const settingsReducer = (state = initialState, action: ActionType) => {
     }
 }
 
-export const setMaxValueAC = (value: number): ActionType => ({type: 'SET_MAX_VALUE', value})
-export const setStartValueAC = (value: number): ActionType =>({type: 'SET_START_VALUE', value})
+export const setMaxValueAC = (maxValue: number): ActionType => ({type: 'SET_MAX_VALUE', value: maxValue})
+export const setStartValueAC = (startValue: number): ActionType =>({type: 'SET_START_VALUE', value: startValue})

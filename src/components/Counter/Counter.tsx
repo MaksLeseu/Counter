@@ -1,4 +1,4 @@
-import React, {FC, memo, useCallback} from "react";
+import React, {useCallback} from "react";
 import {Display} from "./Display/Display";
 import {Button} from "../Button/Button";
 import s from './Counter.module.css'
@@ -10,7 +10,7 @@ import {AppRootStateType} from "../../reducers/store";
 
 
 export const Counter = () => {
-    const counter = useSelector<AppRootStateType, number>(state => state.counter.counter)
+    const counter = useSelector<AppRootStateType, number>(state => state.counter.counterValue)
     const startValue = useSelector<AppRootStateType, number>(state => state.settings.startValue)
     const disabledValue = useSelector<AppRootStateType, number>(state => state.counter.disabledValue)
 

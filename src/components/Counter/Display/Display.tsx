@@ -6,7 +6,7 @@ import {AppRootStateType} from "../../../reducers/store";
 
 
 export const Display = () => {
-    const counter = useSelector<AppRootStateType, number>(state => state.counter.counter)
+    const counter = useSelector<AppRootStateType, number>(state => state.counter.counterValue)
     const disabledValue = useSelector<AppRootStateType, number>(state => state.counter.disabledValue)
 
 

@@ -13,7 +13,6 @@ type SettingsPropsType = {
 }
 
 export const Settings: FC<SettingsPropsType> = memo((props) => {
-    console.log('Settings')
     const {saveValueInLocalStorage,} = props
 
     const maxValue = useSelector<AppRootStateType, number>(state => state.settings.maxValue)
