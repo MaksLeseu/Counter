@@ -4,9 +4,10 @@ import {Button} from "../Button/Button";
 import {SettingsDisplay} from "./SettingsDisplay/SettingsDisplay";
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {setCounterAC, setDisabledValueAC} from "../../reducers/counter-reducer";
+import {setCounterAC, setDisabledValueAC} from "../../state/reducers/counter-reducer";
 import {Dispatch} from "redux";
-import {AppRootStateType} from "../../reducers/store";
+import {AppRootStateType} from "../../state/store";
+import {maxValueSelector, startValueSelector} from "../../state/selectors/settings-selectors";
 
 type SettingsPropsType = {
     saveValueInLocalStorage: (maxValue: number, startValue: number) => void
@@ -15,8 +16,8 @@ type SettingsPropsType = {
 export const Settings: FC<SettingsPropsType> = memo((props) => {
     const {saveValueInLocalStorage,} = props
 
-    const maxValue = useSelector<AppRootStateType, number>(state => state.settings.maxValue)
-    const startValue = useSelector<AppRootStateType, number>(state => state.settings.startValue)
+    const maxValue = useSelector<AppRootStateType, number>(maxValueSelector)
+    const startValue = useSelector<AppRootStateType, number>(startValueSelector)
 
     const dispatch: Dispatch = useDispatch()
 

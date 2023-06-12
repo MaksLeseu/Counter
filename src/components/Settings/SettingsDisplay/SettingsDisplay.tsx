@@ -3,8 +3,9 @@ import s from './SettingsDisplay.module.css'
 import {InputSettingsDisplay} from "./InputSettingsDisplay/InputSettingsDisplay";
 import {useDispatch, useSelector} from "react-redux";
 import {Dispatch} from "redux";
-import {setMaxValueAC, setStartValueAC} from "../../../reducers/settings-reducer";
-import {AppRootStateType} from "../../../reducers/store";
+import {setMaxValueAC, setStartValueAC} from "../../../state/reducers/settings-reducer";
+import {AppRootStateType} from "../../../state/store";
+import {maxValueSelector, startValueSelector} from "../../../state/selectors/settings-selectors";
 
 type SettingsDisplayPropsType = {
     startValueLessThanZero: boolean
@@ -14,8 +15,8 @@ type SettingsDisplayPropsType = {
 export const SettingsDisplay: FC<SettingsDisplayPropsType> = memo((props) => {
     const {startValueLessThanZero, checkingMaxValueAndStartValue,} = props
 
-    const maxValue = useSelector<AppRootStateType, number>(state => state.settings.maxValue)
-    const startValue = useSelector<AppRootStateType, number>(state => state.settings.startValue)
+    const maxValue = useSelector<AppRootStateType, number>(maxValueSelector)
+    const startValue = useSelector<AppRootStateType, number>(startValueSelector)
 
     const dispatch: Dispatch = useDispatch()
 

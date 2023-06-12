@@ -5,9 +5,9 @@ import {Settings} from "./components/Settings/Settings";
 import {restoreState, saveState} from "./common/localStorage/localStorage";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {setCounterAC, setDisabledValueAC} from "./reducers/counter-reducer";
+import {setCounterAC, setDisabledValueAC} from "./state/reducers/counter-reducer";
 import {Dispatch} from "redux";
-import {setMaxValueAC, setStartValueAC} from "./reducers/settings-reducer";
+import {setMaxValueAC, setStartValueAC} from "./state/reducers/settings-reducer";
 
 function App() {
     const dispatch: Dispatch = useDispatch()

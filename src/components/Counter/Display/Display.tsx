@@ -1,18 +1,19 @@
 import React, {FC} from "react";
 import s from './Display.module.css'
 import {useSelector} from "react-redux";
-import {AppRootStateType} from "../../../reducers/store";
+import {AppRootStateType} from "../../../state/store";
+import {counterValueSelector, disabledValueSelector} from "../../../state/selectors/counter-selectors";
 
 
 
 export const Display = () => {
-    const counter = useSelector<AppRootStateType, number>(state => state.counter.counterValue)
-    const disabledValue = useSelector<AppRootStateType, number>(state => state.counter.disabledValue)
+    const counterValue = useSelector<AppRootStateType, number>(counterValueSelector)
+    const disabledValue = useSelector<AppRootStateType, number>(disabledValueSelector)
 
 
-    const errorStyle: string = +counter >= disabledValue ? `${s.display} ${s.lastValueStyle}` : s.display;
+    const errorStyle: string = +counterValue >= disabledValue ? `${s.display} ${s.lastValueStyle}` : s.display;
 
     return (
-        <div className={errorStyle}>{counter}</div>
+        <div className={errorStyle}>{counterValue}</div>
     )
 }

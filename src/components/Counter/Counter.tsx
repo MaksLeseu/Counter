@@ -4,28 +4,31 @@ import {Button} from "../Button/Button";
 import s from './Counter.module.css'
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {setCounterAC} from "../../reducers/counter-reducer";
+import {setCounterAC} from "../../state/reducers/counter-reducer";
 import {Dispatch} from "redux";
-import {AppRootStateType} from "../../reducers/store";
+import {AppRootStateType} from "../../state/store";
+import {counterValueSelector, disabledValueSelector} from "../../state/selectors/counter-selectors";
+import {startValueSelector} from "../../state/selectors/settings-selectors";
 
 
 export const Counter = () => {
-    const counter = useSelector<AppRootStateType, number>(state => state.counter.counterValue)
-    const startValue = useSelector<AppRootStateType, number>(state => state.settings.startValue)
-    const disabledValue = useSelector<AppRootStateType, number>(state => state.counter.disabledValue)
+
+    const counterValue = useSelector<AppRootStateType, number>(counterValueSelector)
+    const startValue = useSelector<AppRootStateType, number>(startValueSelector)
+    const disabledValue = useSelector<AppRootStateType, number>(disabledValueSelector)
 
     const dispatch: Dispatch = useDispatch()
 
-    const isDisabledInc: boolean = counter >= disabledValue;
-    const isDisabledReset: boolean = counter === startValue;
+    const isDisabledInc: boolean = counterValue >= disabledValue;
+    const isDisabledReset: boolean = counterValue === startValue;
 
     const addNumberInSetCounter = () => {
-        dispatch(setCounterAC(counter + 1));
+        dispatch(setCounterAC(counterValue + 1));
     }
 
-    const zeroingCounter = useCallback(() => {
+    const zeroingCounter = () => {
         dispatch(setCounterAC(startValue));
-    }, [dispatch])
+    }
 
     return (
         <div className={s.counter}>
