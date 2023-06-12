@@ -3,19 +3,21 @@ import s from './Settings.module.css'
 import {Button} from "../Button/Button";
 import {SettingsDisplay} from "./SettingsDisplay/SettingsDisplay";
 import {NavLink} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setCounterAC, setDisabledValueAC} from "../../reducers/counter-reducer";
 import {Dispatch} from "redux";
+import {AppRootStateType} from "../../reducers/store";
 
 type SettingsPropsType = {
-    maxValue: number
-    startValue: number
-
     saveValueInLocalStorage: (maxValue: number, startValue: number) => void
 }
 
 export const Settings: FC<SettingsPropsType> = (props) => {
-    const {maxValue, startValue, saveValueInLocalStorage,} = props
+    const {saveValueInLocalStorage,} = props
+
+    const maxValue = useSelector<AppRootStateType, number>(state => state.settings.maxValue)
+    const startValue = useSelector<AppRootStateType, number>(state => state.settings.startValue)
+
     const dispatch: Dispatch = useDispatch()
 
     const startValueLessThanZero = startValue < 0;
@@ -31,8 +33,6 @@ export const Settings: FC<SettingsPropsType> = (props) => {
         <div className={s.settings}>
             <div className={s.settingsContainer}>
                 <SettingsDisplay
-                    maxValue={maxValue}
-                    startValue={startValue}
                     startValueLessThanZero={startValueLessThanZero}
                     checkingMaxValueAndStartValue={checkingMaxValueAndStartValue}
                 />

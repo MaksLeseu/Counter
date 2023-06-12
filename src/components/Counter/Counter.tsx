@@ -3,19 +3,17 @@ import {Display} from "./Display/Display";
 import {Button} from "../Button/Button";
 import s from './Counter.module.css'
 import {NavLink} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setCounterAC} from "../../reducers/counter-reducer";
 import {Dispatch} from "redux";
+import {AppRootStateType} from "../../reducers/store";
 
-type CounterPropsType = {
-    counter: number
-    startValue: number
 
-    disabledValue: number
-}
+export const Counter = () => {
+    const counter = useSelector<AppRootStateType, number>(state => state.counter.counter)
+    const startValue = useSelector<AppRootStateType, number>(state => state.settings.startValue)
+    const disabledValue = useSelector<AppRootStateType, number>(state => state.counter.disabledValue)
 
-export const Counter: FC<CounterPropsType> = (props) => {
-    const {counter, startValue, disabledValue,} = props
     const dispatch: Dispatch = useDispatch()
 
     const isDisabledInc: boolean = counter >= disabledValue;
@@ -32,10 +30,7 @@ export const Counter: FC<CounterPropsType> = (props) => {
     return (
         <div className={s.counter}>
             <div className={s.counterContainer}>
-                <Display
-                    counter={counter}
-                    disabledValue={disabledValue}
-                />
+                <Display />
                 <div className={s.buttonContainer}>
                     <Button disabledButton={isDisabledInc}
                             onClick={addNumberInSetCounter}

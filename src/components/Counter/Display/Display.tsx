@@ -1,13 +1,13 @@
 import React, {FC} from "react";
 import s from './Display.module.css'
+import {useSelector} from "react-redux";
+import {AppRootStateType} from "../../../reducers/store";
 
-type DisplayPropsType = {
-    counter: number
-    disabledValue: number
-}
 
-export const Display: FC<DisplayPropsType> = (props) => {
-    const {counter, disabledValue,} = props
+
+export const Display = () => {
+    const counter = useSelector<AppRootStateType, number>(state => state.counter.counter)
+    const disabledValue = useSelector<AppRootStateType, number>(state => state.counter.disabledValue)
 
 
     const errorStyle: string = +counter >= disabledValue ? `${s.display} ${s.lastValueStyle}` : s.display;

@@ -1,19 +1,22 @@
 import React, {ChangeEvent, FC} from "react";
 import s from './SettingsDisplay.module.css'
 import {InputSettingsDisplay} from "./InputSettingsDisplay/InputSettingsDisplay";
-import {useDispatch} from "react-redux";
-import {setMaxValueAC, setStartValueAC} from "../../../reducers/counter-reducer";
+import {useDispatch, useSelector} from "react-redux";
 import {Dispatch} from "redux";
+import {setMaxValueAC, setStartValueAC} from "../../../reducers/settings-reducer";
+import {AppRootStateType} from "../../../reducers/store";
 
 type SettingsDisplayPropsType = {
-    maxValue: number
-    startValue: number
     startValueLessThanZero: boolean
     checkingMaxValueAndStartValue: boolean
 }
 
 export const SettingsDisplay: FC<SettingsDisplayPropsType> = (props) => {
-    const {maxValue, startValue, startValueLessThanZero, checkingMaxValueAndStartValue,} = props
+    const {startValueLessThanZero, checkingMaxValueAndStartValue,} = props
+
+    const maxValue = useSelector<AppRootStateType, number>(state => state.settings.maxValue)
+    const startValue = useSelector<AppRootStateType, number>(state => state.settings.startValue)
+
     const dispatch: Dispatch = useDispatch()
 
     const errorClassEqualValues = checkingMaxValueAndStartValue ? `${s.value} ${s.errorValue}`: `${s.value}`;
