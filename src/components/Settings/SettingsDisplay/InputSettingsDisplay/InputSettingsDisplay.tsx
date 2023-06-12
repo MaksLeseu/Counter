@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC} from "react";
+import React, {ChangeEvent, FC, memo} from "react";
 
 type InputSettingsDisplayPropsType = {
     value: number
@@ -6,7 +6,7 @@ type InputSettingsDisplayPropsType = {
     onChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-export const InputSettingsDisplay: FC<InputSettingsDisplayPropsType> = (props) => {
+export const InputSettingsDisplay: FC<InputSettingsDisplayPropsType> = memo((props) => {
     const {value, errorClass, onChange,} = props
 
     return (
@@ -17,4 +17,4 @@ export const InputSettingsDisplay: FC<InputSettingsDisplayPropsType> = (props) =
             value={value}
         />
     )
-}
+})

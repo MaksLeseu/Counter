@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, {FC, memo, useCallback} from "react";
 import {Display} from "./Display/Display";
 import {Button} from "../Button/Button";
 import s from './Counter.module.css'
@@ -23,9 +23,9 @@ export const Counter = () => {
         dispatch(setCounterAC(counter + 1));
     }
 
-    const zeroingCounter = () => {
+    const zeroingCounter = useCallback(() => {
         dispatch(setCounterAC(startValue));
-    }
+    }, [dispatch])
 
     return (
         <div className={s.counter}>

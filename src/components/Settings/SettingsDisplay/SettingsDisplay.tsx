@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC} from "react";
+import React, {ChangeEvent, FC, memo, useCallback} from "react";
 import s from './SettingsDisplay.module.css'
 import {InputSettingsDisplay} from "./InputSettingsDisplay/InputSettingsDisplay";
 import {useDispatch, useSelector} from "react-redux";
@@ -11,7 +11,7 @@ type SettingsDisplayPropsType = {
     checkingMaxValueAndStartValue: boolean
 }
 
-export const SettingsDisplay: FC<SettingsDisplayPropsType> = (props) => {
+export const SettingsDisplay: FC<SettingsDisplayPropsType> = memo((props) => {
     const {startValueLessThanZero, checkingMaxValueAndStartValue,} = props
 
     const maxValue = useSelector<AppRootStateType, number>(state => state.settings.maxValue)
@@ -22,13 +22,13 @@ export const SettingsDisplay: FC<SettingsDisplayPropsType> = (props) => {
     const errorClassEqualValues = checkingMaxValueAndStartValue ? `${s.value} ${s.errorValue}`: `${s.value}`;
     const errorClassStartValue = startValueLessThanZero || checkingMaxValueAndStartValue ? `${s.value} ${s.errorValue}`: `${s.value}`;
 
-    const setInputMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
+    const setInputMaxValue = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         dispatch(setMaxValueAC(Number(e.currentTarget.value)))
-    }
+    }, [dispatch])
 
-    const setInputStartValue = (e: ChangeEvent<HTMLInputElement>) => {
+    const setInputStartValue = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         dispatch(setStartValueAC(Number(e.currentTarget.value)))
-    }
+    }, [dispatch])
 
     return (
         <div className={s.settingsDisplay}>
@@ -50,4 +50,4 @@ export const SettingsDisplay: FC<SettingsDisplayPropsType> = (props) => {
             </div>
         </div>
     )
-}
+})

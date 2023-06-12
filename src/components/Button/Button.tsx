@@ -1,4 +1,4 @@
-import React, {FC, ReactNode} from "react";
+import React, {FC, memo, ReactNode} from "react";
 import s from './Button.module.css'
 
 type ButtonPropsType = {
@@ -7,7 +7,7 @@ type ButtonPropsType = {
     onClick?: () => void
 }
 
-export const Button: FC<ButtonPropsType> = (props) => {
+export const Button: FC<ButtonPropsType> = memo((props) => {
     const {disabledButton, children, onClick,} = props
     return (
         <button disabled={disabledButton}
@@ -16,4 +16,4 @@ export const Button: FC<ButtonPropsType> = (props) => {
             {children}
         </button>
     )
-}
+})

@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, {FC, memo, useCallback} from "react";
 import s from './Settings.module.css'
 import {Button} from "../Button/Button";
 import {SettingsDisplay} from "./SettingsDisplay/SettingsDisplay";
@@ -12,7 +12,8 @@ type SettingsPropsType = {
     saveValueInLocalStorage: (maxValue: number, startValue: number) => void
 }
 
-export const Settings: FC<SettingsPropsType> = (props) => {
+export const Settings: FC<SettingsPropsType> = memo((props) => {
+    console.log('Settings')
     const {saveValueInLocalStorage,} = props
 
     const maxValue = useSelector<AppRootStateType, number>(state => state.settings.maxValue)
@@ -48,4 +49,4 @@ export const Settings: FC<SettingsPropsType> = (props) => {
             </div>
         </div>
     )
-}
+})
