@@ -1,56 +1,51 @@
-import React, {ChangeEvent, FC, memo, useCallback} from "react";
+import React, {ChangeEvent, memo, useCallback} from "react";
 import s from './Settings.module.css'
 import {Button} from "../Button/Button";
-import {SettingsDisplay} from "./SettingsDisplay/SettingsDisplay";
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {setCounterAC, setDisabledValueAC} from "../../state/reducers/counter-reducer";
 import {Dispatch} from "redux";
-import {AppRootStateType} from "../../state/store";
 import {maxValueSelector, startValueSelector} from "../../state/selectors/settings-selectors";
 import {setMaxValueAC, setStartValueAC} from "../../state/reducers/settings-reducer";
-import {InputSettingsDisplay} from "./SettingsDisplay/InputSettingsDisplay/InputSettingsDisplay";
+import {InputSettingsDisplay} from "./InputSettingsDisplay/InputSettingsDisplay";
+import {saveState} from "../../common/localStorage/localStorage";
 
-type SettingsPropsType = {
-    saveValueInLocalStorage: (maxValue: number, startValue: number) => void
-}
+export const Settings = memo(() => {
 
-export const Settings: FC<SettingsPropsType> = memo((props) => {
-    const {saveValueInLocalStorage,} = props
+    const saveValueInLocalStorage = (maxValue: number, startValue: number): void => {
+        saveState<number>('maxValue', maxValue)
+        saveState<number>('startValue', startValue)
+    }
 
-    const maxValue = useSelector<AppRootStateType, number>(maxValueSelector)
-    const startValue = useSelector<AppRootStateType, number>(startValueSelector)
+    const maxValue: number = useSelector(maxValueSelector)
+    const startValue: number = useSelector(startValueSelector)
 
     const dispatch: Dispatch = useDispatch()
 
-    const startValueLessThanZero = startValue < 0;
-    const checkingMaxValueAndStartValue = maxValue === startValue || startValue > maxValue
+    const startValueLessThanZero: boolean = startValue < 0;
+    const checkingMaxValueAndStartValue: boolean = maxValue === startValue || startValue > maxValue
 
-    const setSettingsValue = () => {
+    const errorClassEqualValues: string = checkingMaxValueAndStartValue ? `${s.value} ${s.errorValue}`: `${s.value}`;
+    const errorClassStartValue: string = startValueLessThanZero || checkingMaxValueAndStartValue ? `${s.value} ${s.errorValue}`: `${s.value}`;
+
+    const setSettingsValue = (): void => {
         dispatch(setDisabledValueAC(maxValue))
         dispatch(setCounterAC(startValue))
         saveValueInLocalStorage(maxValue, startValue)
     }
 
-    const errorClassEqualValues = checkingMaxValueAndStartValue ? `${s.value} ${s.errorValue}`: `${s.value}`;
-    const errorClassStartValue = startValueLessThanZero || checkingMaxValueAndStartValue ? `${s.value} ${s.errorValue}`: `${s.value}`;
-
-    const setInputMaxValue = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    const setInputMaxValue = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
         dispatch(setMaxValueAC(+e.currentTarget.value))
     }, [dispatch])
 
-    const setInputStartValue = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    const setInputStartValue = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
         dispatch(setStartValueAC(+e.currentTarget.value))
     }, [dispatch])
 
     return (
         <div className={s.settings}>
             <div className={s.settingsContainer}>
-                {/*<SettingsDisplay
-                    startValueLessThanZero={startValueLessThanZero}
-                    checkingMaxValueAndStartValue={checkingMaxValueAndStartValue}
-                />*/}
-                <div className={s.settingsDisplay}>
+                <div className={s.display}>
                     <div className={s.containerValue}>
                         <p>max value:</p>
                         <InputSettingsDisplay

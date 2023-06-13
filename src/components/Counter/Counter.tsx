@@ -1,32 +1,40 @@
-import React, {useCallback} from "react";
+import React, {useEffect} from "react";
 import {Display} from "./Display/Display";
 import {Button} from "../Button/Button";
 import s from './Counter.module.css'
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {setCounterAC} from "../../state/reducers/counter-reducer";
+import {setCounterAC, setDisabledValueAC} from "../../state/reducers/counter-reducer";
 import {Dispatch} from "redux";
-import {AppRootStateType} from "../../state/store";
 import {counterValueSelector, disabledValueSelector} from "../../state/selectors/counter-selectors";
 import {startValueSelector} from "../../state/selectors/settings-selectors";
+import {setMaxValueAC, setStartValueAC} from "../../state/reducers/settings-reducer";
+import {restoreState} from "../../common/localStorage/localStorage";
 
 
 export const Counter = () => {
 
-    const counterValue = useSelector<AppRootStateType, number>(counterValueSelector)
-    const startValue = useSelector<AppRootStateType, number>(startValueSelector)
-    const disabledValue = useSelector<AppRootStateType, number>(disabledValueSelector)
+    useEffect(() => {
+        dispatch(setMaxValueAC(restoreState<number>('maxValue', 5)))
+        dispatch(setDisabledValueAC(restoreState<number>('maxValue', 5)))
+        dispatch(setStartValueAC(restoreState<number>('startValue', 0)))
+        dispatch(setCounterAC(restoreState<number>('startValue', 0)))
+    }, [])
+
+    const counterValue: number = useSelector(counterValueSelector)
+    const startValue: number = useSelector(startValueSelector)
+    const disabledValue: number = useSelector(disabledValueSelector)
 
     const dispatch: Dispatch = useDispatch()
 
     const isDisabledInc: boolean = counterValue >= disabledValue;
     const isDisabledReset: boolean = counterValue === startValue;
 
-    const addNumberInSetCounter = () => {
+    const addNumberInSetCounter = (): void => {
         dispatch(setCounterAC(counterValue + 1));
     }
 
-    const zeroingCounter = () => {
+    const zeroingCounter = (): void => {
         dispatch(setCounterAC(startValue));
     }
 

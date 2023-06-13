@@ -1,28 +1,10 @@
-import React, {useCallback, useEffect} from 'react';
+import React from 'react';
 import './App.css';
 import {Counter} from "./components/Counter/Counter";
 import {Settings} from "./components/Settings/Settings";
-import {restoreState, saveState} from "./common/localStorage/localStorage";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {setCounterAC, setDisabledValueAC} from "./state/reducers/counter-reducer";
-import {Dispatch} from "redux";
-import {setMaxValueAC, setStartValueAC} from "./state/reducers/settings-reducer";
 
 function App() {
-    const dispatch: Dispatch = useDispatch()
-
-    const saveValueInLocalStorage = (maxValue: number, startValue: number) => {
-        saveState<number>('maxValue', maxValue)
-        saveState<number>('startValue', startValue)
-    }
-
-    useEffect(() => {
-        dispatch(setMaxValueAC(restoreState<number>('maxValue', 5)))
-        dispatch(setDisabledValueAC(restoreState<number>('maxValue', 5)))
-        dispatch(setStartValueAC(restoreState<number>('startValue', 0)))
-        dispatch(setCounterAC(restoreState<number>('startValue', 0)))
-    }, [])
 
     return (
         <BrowserRouter>
@@ -32,9 +14,7 @@ function App() {
                         <Counter />
                     } />
                     <Route path={'/settings'} element={
-                        <Settings
-                            saveValueInLocalStorage={saveValueInLocalStorage}
-                        />
+                        <Settings />
                     } />
                 </Routes>
             </div>
