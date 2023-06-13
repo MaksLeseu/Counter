@@ -24,11 +24,11 @@ export const SettingsDisplay: FC<SettingsDisplayPropsType> = memo((props) => {
     const errorClassStartValue = startValueLessThanZero || checkingMaxValueAndStartValue ? `${s.value} ${s.errorValue}`: `${s.value}`;
 
     const setInputMaxValue = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-        dispatch(setMaxValueAC(Number(e.currentTarget.value)))
+        dispatch(setMaxValueAC(+e.currentTarget.value))
     }, [dispatch])
 
     const setInputStartValue = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-        dispatch(setStartValueAC(Number(e.currentTarget.value)))
+        dispatch(setStartValueAC(+e.currentTarget.value))
     }, [dispatch])
 
     return (
