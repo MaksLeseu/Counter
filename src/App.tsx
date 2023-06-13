@@ -13,12 +13,12 @@ function App() {
 
     const dispatch: Dispatch = useDispatch()
 
-    useEffect(() => {
+    /*useEffect(() => {
         dispatch(setMaxValueAC(restoreState<number>('maxValue', 5)))
         dispatch(setDisabledValueAC(restoreState<number>('maxValue', 5)))
         dispatch(setStartValueAC(restoreState<number>('startValue', 0)))
         dispatch(setCounterAC(restoreState<number>('startValue', 0)))
-    }, [])
+    }, [])*/
 
     return (
         <BrowserRouter>
