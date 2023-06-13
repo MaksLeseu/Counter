@@ -4,7 +4,7 @@ import {Counter} from "./components/Counter/Counter";
 import {Settings} from "./components/Settings/Settings";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {setMaxValueAC, setStartValueAC} from "./state/reducers/settings-reducer";
-import {checkLS, restoreState} from "./common/localStorage/localStorage";
+import {restoreState} from "./common/localStorage/localStorage";
 import {setCounterAC, setDisabledValueAC} from "./state/reducers/counter-reducer";
 import {useDispatch} from "react-redux";
 import {Dispatch} from "redux";
@@ -13,12 +13,12 @@ function App() {
 
     const dispatch: Dispatch = useDispatch()
 
-    /*useEffect(() => {
+    useEffect(() => {
         dispatch(setMaxValueAC(restoreState<number>('maxValue', 5)))
         dispatch(setDisabledValueAC(restoreState<number>('maxValue', 5)))
         dispatch(setStartValueAC(restoreState<number>('startValue', 0)))
         dispatch(setCounterAC(restoreState<number>('startValue', 0)))
-    }, [])*/
+    }, [])
 
     return (
         <BrowserRouter>
