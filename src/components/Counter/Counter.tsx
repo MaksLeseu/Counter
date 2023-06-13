@@ -1,15 +1,14 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {Display} from "./Display/Display";
 import {Button} from "../Button/Button";
 import s from './Counter.module.css'
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {setCounterAC, setDisabledValueAC} from "../../state/reducers/counter-reducer";
+import {setCounterAC} from "../../state/reducers/counter-reducer";
 import {Dispatch} from "redux";
 import {counterValueSelector, disabledValueSelector} from "../../state/selectors/counter-selectors";
 import {startValueSelector} from "../../state/selectors/settings-selectors";
-import {setMaxValueAC, setStartValueAC} from "../../state/reducers/settings-reducer";
-import {restoreState} from "../../common/localStorage/localStorage";
+import {checkLS} from "../../common/localStorage/localStorage";
 
 
 export const Counter = () => {
@@ -31,12 +30,14 @@ export const Counter = () => {
         dispatch(setCounterAC(startValue));
     }
 
+    const checkLocalStorage: boolean = checkLS('maxValue')
+
     return (
         <div className={s.counter}>
             <div className={s.counterContainer}>
-                <Display />
+                {checkLocalStorage ? <div className={s.message}>You need to set settings</div> : <Display />}
                 <div className={s.buttonContainer}>
-                    <Button disabledButton={isDisabledInc}
+                    <Button disabledButton={isDisabledInc || checkLocalStorage}
                             onClick={addNumberInSetCounter}
                     >
                         incr
