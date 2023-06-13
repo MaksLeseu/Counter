@@ -10,7 +10,7 @@ import {setMaxValueAC, setStartValueAC} from "../../state/reducers/settings-redu
 import {InputSettingsDisplay} from "./InputSettingsDisplay/InputSettingsDisplay";
 import {saveState} from "../../common/localStorage/localStorage";
 
-export const Settings = memo(() => {
+export const Settings = () => {
 
     const saveValueInLocalStorage = (maxValue: number, startValue: number): void => {
         saveState<number>('maxValue', maxValue)
@@ -75,4 +75,4 @@ export const Settings = memo(() => {
             </div>
         </div>
     )
-})
+}

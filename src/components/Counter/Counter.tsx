@@ -14,13 +14,6 @@ import {restoreState} from "../../common/localStorage/localStorage";
 
 export const Counter = () => {
 
-    useEffect(() => {
-        dispatch(setMaxValueAC(restoreState<number>('maxValue', 5)))
-        dispatch(setDisabledValueAC(restoreState<number>('maxValue', 5)))
-        dispatch(setStartValueAC(restoreState<number>('startValue', 0)))
-        dispatch(setCounterAC(restoreState<number>('startValue', 0)))
-    }, [])
-
     const counterValue: number = useSelector(counterValueSelector)
     const startValue: number = useSelector(startValueSelector)
     const disabledValue: number = useSelector(disabledValueSelector)
