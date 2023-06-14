@@ -1,9 +1,10 @@
 .counter {
-    border: 1px black solid;
+    border: 2px black solid;
     display: inline-block;
     width: 350px;
-    height: 200px;
-    background-color: #2F4F4F;
+    height: 250px;
+    background-color: cornflowerblue;
+    border-radius: 5px;
 }
 
 .counterContainer {
@@ -21,13 +22,12 @@
 .message {
     width: 300px;
     height: 100px;
-    background-color: cornflowerblue;
-    border: 1px black solid;
-    margin-bottom: 20px;
-    color: white;
+    margin-bottom: 55px;
+    color: #282828;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 30px;
     text-align: center;
+    font-weight: 700;
 }

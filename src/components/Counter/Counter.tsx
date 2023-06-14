@@ -1,6 +1,6 @@
 import React from "react";
 import {Display} from "./Display/Display";
-import {Button} from "../Button/Button";
+import {Buttons} from "../Button/Button";
 import s from './Counter.module.css'
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
@@ -37,21 +37,21 @@ export const Counter = () => {
             <div className={s.counterContainer}>
                 {checkLocalStorage ? <div className={s.message}>You need to set settings</div> : <Display />}
                 <div className={s.buttonContainer}>
-                    <Button disabledButton={isDisabledInc || checkLocalStorage}
+                    <Buttons disabledButton={isDisabledInc || checkLocalStorage}
                             onClick={addNumberInSetCounter}
                     >
                         incr
-                    </Button>
-                    <Button disabledButton={isDisabledReset}
+                    </Buttons>
+                    <Buttons disabledButton={isDisabledReset}
                             onClick={zeroingCounter}
                     >
                         rest
-                    </Button>
+                    </Buttons>
                     <NavLink to={'/settings'}>
-                        <Button
+                        <Buttons
                         >
                             set
-                        </Button>
+                        </Buttons>
                     </NavLink>
                 </div>
             </div>

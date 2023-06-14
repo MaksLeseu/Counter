@@ -1,10 +1,13 @@
 .button {
     width: 90px;
     height: 40px;
-    font-size: 18px;
-    font-weight: 700;
-    margin-left: 10px;
-    margin-right: 10px;
-    background-color: #F0E68C;
+    font-size: 14px;
+    /*margin-left: 10px;
+    margin-right: 10px;*/
+    /*background-color: #F0E68C;*/
 }
 
+.btn_container {
+    margin-left: 10px;
+    margin-right: 10px;
+}

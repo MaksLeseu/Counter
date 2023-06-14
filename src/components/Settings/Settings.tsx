@@ -1,6 +1,5 @@
-import React, {ChangeEvent, memo, useCallback} from "react";
+import React, {ChangeEvent, useCallback} from "react";
 import s from './Settings.module.css'
-import {Button} from "../Button/Button";
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {setCounterAC, setDisabledValueAC} from "../../state/reducers/counter-reducer";
@@ -9,6 +8,7 @@ import {maxValueSelector, startValueSelector} from "../../state/selectors/settin
 import {setMaxValueAC, setStartValueAC} from "../../state/reducers/settings-reducer";
 import {InputSettingsDisplay} from "./InputSettingsDisplay/InputSettingsDisplay";
 import {saveState} from "../../common/localStorage/localStorage";
+import {Buttons} from "../Button/Button";
 
 export const Settings = () => {
 
@@ -42,21 +42,30 @@ export const Settings = () => {
         dispatch(setStartValueAC(+e.currentTarget.value))
     }, [dispatch])
 
+    const inputStyles = {
+        fontSize: '21px',
+        textAlign: 'center',
+    };
+
     return (
         <div className={s.settings}>
             <div className={s.settingsContainer}>
                 <div className={s.display}>
                     <div className={s.containerValue}>
-                        <p>max value:</p>
+                        {/*<p>max value:</p>*/}
                         <InputSettingsDisplay
+                            inputStyles={inputStyles}
+                            label={'max value:'}
                             value={maxValue}
                             errorClass={errorClassEqualValues}
                             onChange={setInputMaxValue}
                         />
                     </div>
                     <div className={s.containerValue}>
-                        <p>start value:</p>
+                        {/*<p>start value:</p>*/}
                         <InputSettingsDisplay
+                            inputStyles={inputStyles}
+                            label={'start value:'}
                             value={startValue}
                             errorClass={errorClassStartValue}
                             onChange={setInputStartValue}
@@ -65,11 +74,11 @@ export const Settings = () => {
                 </div>
                 <div className={s.buttonContainer}>
                     <NavLink to={'/'}>
-                        <Button disabledButton={startValueLessThanZero || checkingMaxValueAndStartValue}
+                        <Buttons disabledButton={startValueLessThanZero || checkingMaxValueAndStartValue}
                                 onClick={setSettingsValue}
                         >
                             set
-                        </Button>
+                        </Buttons>
                     </NavLink>
                 </div>
             </div>

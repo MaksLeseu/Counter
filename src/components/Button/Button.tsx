@@ -1,5 +1,6 @@
 import React, {FC, memo, ReactNode} from "react";
 import s from './Button.module.css'
+import {Button} from "@mui/material";
 
 type ButtonPropsType = {
     disabledButton?: boolean
@@ -7,13 +8,26 @@ type ButtonPropsType = {
     onClick?: () => void
 }
 
-export const Button: FC<ButtonPropsType> = memo((props) => {
+export const Buttons: FC<ButtonPropsType> = memo((props) => {
     const {disabledButton, children, onClick,} = props
     return (
-        <button disabled={disabledButton}
+        /*<button disabled={disabledButton}
                 onClick={onClick}
                 className={s.button}>
             {children}
-        </button>
+        </button>*/
+        <div className={s.btn_container}>
+            <Button
+                variant="contained"
+                color="secondary"
+                disableElevation
+
+                disabled={disabledButton}
+                onClick={onClick}
+                className={s.button}
+            >
+                {children}
+            </Button>
+        </div>
     )
 })
