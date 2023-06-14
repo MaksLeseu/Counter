@@ -1,50 +1,53 @@
-import React, {ChangeEvent, FC, memo} from "react";
-import {makeStyles, TextField} from "@mui/material";
+import React, {ChangeEvent, FC, memo, useState} from "react";
+import {makeStyles, TextField, IconButton, InputAdornment} from "@mui/material";
 import s from './InputSettingsDisplay.module.css'
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 
 type InputSettingsDisplayPropsType = {
     inputStyles: any
     value: number
     errorClass: string
     label: string
-    onChange: (e: ChangeEvent<HTMLInputElement>) => void
+    /*onChange: (e: ChangeEvent<HTMLInputElement>) => void*/
+    onChange: any
 }
 
 
 export const InputSettingsDisplay: FC<InputSettingsDisplayPropsType> = memo((props) => {
     const {value, errorClass, onChange, label, inputStyles} = props
 
+    const handleIncrement = () => {
+        onChange(value + 1)
+    };
+
+    const handleDecrement = () => {
+        onChange(value - 1)
+    };
+
     return (
-        /*<input
-            className={errorClass}
-            type={"number"}
-            onChange={onChange}
-            value={value}
-            error" | "primary" | "secondary" | "info" | "success" | "warning" | undefined'.
-        />*/
         <div className={s.inputField}>
             <TextField
                 fullWidth
                 id="filled-hidden-label-small"
-                /*defaultValue="Small"*/
                 margin="dense"
                 color="secondary"
                 label={label}
                 variant="outlined"
                 size="small"
                 InputProps={{
-                    style: {
-                        /*color: 'black',*/
-                        /*backgroundColor: 'gray',*/
-                        /*boxShadow: '1px 1px 3px white',*/
-                    },
+                    readOnly: true,
+                    endAdornment: (
+                        <InputAdornment position="end">
+                            <IconButton onClick={handleIncrement} size="small">
+                                <AddIcon />
+                            </IconButton>
+                            <IconButton onClick={handleDecrement} size="small">
+                                <RemoveIcon />
+                            </IconButton>
+                        </InputAdornment>
+                    ),
                 }}
-                /*InputLabelProps={{
-                    style: {
-                        color: '#999',
-                    },
-                }}*/
-
 
                 className={errorClass}
                 type={"number"}

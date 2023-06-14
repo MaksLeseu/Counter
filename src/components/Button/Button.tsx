@@ -11,11 +11,6 @@ type ButtonPropsType = {
 export const Buttons: FC<ButtonPropsType> = memo((props) => {
     const {disabledButton, children, onClick,} = props
     return (
-        /*<button disabled={disabledButton}
-                onClick={onClick}
-                className={s.button}>
-            {children}
-        </button>*/
         <div className={s.btn_container}>
             <Button
                 variant="contained"

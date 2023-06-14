@@ -36,26 +36,29 @@ export const Settings = () => {
         saveValueInLocalStorage(maxValue, startValue)
     }
 
-    const setInputMaxValue = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
-        dispatch(setMaxValueAC(+e.currentTarget.value))
+    const setInputMaxValue = useCallback((/*e: ChangeEvent<HTMLInputElement>*/ value: any): void => {
+        dispatch(setMaxValueAC(value))
     }, [dispatch])
 
-    const setInputStartValue = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
-        dispatch(setStartValueAC(+e.currentTarget.value))
+    const setInputStartValue = useCallback((/*e: ChangeEvent<HTMLInputElement>*/ value: any): void => {
+        dispatch(setStartValueAC(value))
     }, [dispatch])
 
     const inputStyles = {
         fontSize: '24px',
         textAlign: 'center',
+        paddingLeft: '90px'
     };
 
     return (
         <div className={s.settings}>
             <div className={s.settingsContainer}>
                 <div className={s.display}>
-                    <div className={s.settingsText}><div><SettingsIcon /></div> <div>Settings</div> </div>
+                    <div className={s.settingsText}>
+                        <div> <SettingsIcon /></div>
+                        <div>Settings</div>
+                    </div>
                     <div className={s.containerValue}>
-                        {/*<p>max value:</p>*/}
                         <InputSettingsDisplay
                             inputStyles={inputStyles}
                             label={'max value:'}
@@ -65,7 +68,6 @@ export const Settings = () => {
                         />
                     </div>
                     <div className={s.containerValue}>
-                        {/*<p>start value:</p>*/}
                         <InputSettingsDisplay
                             inputStyles={inputStyles}
                             label={'start value:'}
@@ -76,7 +78,7 @@ export const Settings = () => {
                     </div>
                 </div>
                 <div className={s.buttonContainer}>
-                    <NavLink to={'/'}>
+                    <NavLink to={startValueLessThanZero || checkingMaxValueAndStartValue ? '#' : '/'} >
                         <Buttons disabledButton={startValueLessThanZero || checkingMaxValueAndStartValue}
                                 onClick={setSettingsValue}
                         >
