@@ -5,6 +5,8 @@
     border: 1px black solid;
     margin-bottom: 55px;
     color: white;
+    box-shadow: 2px 0 15px #9c27b0;
+    /*text-shadow: 1px 1px 10px #ef6c00;*/
     display: flex;
     justify-content: center;
     align-items: center;

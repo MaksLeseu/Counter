@@ -9,6 +9,7 @@ import {setMaxValueAC, setStartValueAC} from "../../state/reducers/settings-redu
 import {InputSettingsDisplay} from "./InputSettingsDisplay/InputSettingsDisplay";
 import {saveState} from "../../common/localStorage/localStorage";
 import {Buttons} from "../Button/Button";
+import SaveAltIcon from '@mui/icons-material/SaveAlt';
 
 export const Settings = () => {
 
@@ -77,7 +78,7 @@ export const Settings = () => {
                         <Buttons disabledButton={startValueLessThanZero || checkingMaxValueAndStartValue}
                                 onClick={setSettingsValue}
                         >
-                            set
+                            <SaveAltIcon />
                         </Buttons>
                     </NavLink>
                 </div>

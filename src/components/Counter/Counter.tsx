@@ -9,7 +9,9 @@ import {Dispatch} from "redux";
 import {counterValueSelector, disabledValueSelector} from "../../state/selectors/counter-selectors";
 import {startValueSelector} from "../../state/selectors/settings-selectors";
 import {checkLS} from "../../common/localStorage/localStorage";
-
+import PlusOneIcon from '@mui/icons-material/PlusOne';
+import SettingsIcon from '@mui/icons-material/Settings';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
 export const Counter = () => {
 
@@ -40,17 +42,17 @@ export const Counter = () => {
                     <Buttons disabledButton={isDisabledInc || checkLocalStorage}
                             onClick={addNumberInSetCounter}
                     >
-                        incr
+                        <PlusOneIcon />
                     </Buttons>
                     <Buttons disabledButton={isDisabledReset}
                             onClick={zeroingCounter}
                     >
-                        rest
+                        <RestartAltIcon />
                     </Buttons>
                     <NavLink to={'/settings'}>
                         <Buttons
                         >
-                            set
+                            <SettingsIcon />
                         </Buttons>
                     </NavLink>
                 </div>

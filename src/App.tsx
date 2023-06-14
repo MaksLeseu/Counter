@@ -35,13 +35,15 @@ function App() {
     const customTheme = createTheme({
         palette: {
             primary: {
-                main: '#9d22b1',
+                main: '#9c27b0',
+                dark: '#ef6c00',
             },
             secondary: {
-                main: '#9d22b1',
+                main: '#9c27b0',
+                dark: '#ef6c00',
             },
             mode: isDarkMode ? 'dark' : 'light'
-        }
+        },
     })
 
     return (
