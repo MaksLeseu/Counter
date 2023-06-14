@@ -1,16 +1,15 @@
 .display {
     width: 300px;
     height: 110px;
-    background-color: #282828;
+    /*background-color: #282828;*/
     border: 1px black solid;
-    margin-bottom: 55px;
-    color: white;
-    box-shadow: 2px 0 15px #9c27b0;
-    /*text-shadow: 1px 1px 10px #ef6c00;*/
+    margin-bottom: 35px;
+    color: black;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 50px;
+    border-radius: 5px;
 }
 
 .lastValueStyle {

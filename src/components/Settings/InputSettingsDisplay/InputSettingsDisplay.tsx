@@ -20,28 +20,30 @@ export const InputSettingsDisplay: FC<InputSettingsDisplayPropsType> = memo((pro
             type={"number"}
             onChange={onChange}
             value={value}
+            error" | "primary" | "secondary" | "info" | "success" | "warning" | undefined'.
         />*/
         <div className={s.inputField}>
             <TextField
                 fullWidth
                 id="filled-hidden-label-small"
                 /*defaultValue="Small"*/
+                margin="dense"
                 color="secondary"
                 label={label}
-                variant="filled"
+                variant="outlined"
                 size="small"
                 InputProps={{
                     style: {
-                        color: 'black',
-                        backgroundColor: 'var(--input-background)',
-                        boxShadow: '1px 1px 2px black',
+                        /*color: 'black',*/
+                        /*backgroundColor: 'gray',*/
+                        /*boxShadow: '1px 1px 3px white',*/
                     },
                 }}
-                InputLabelProps={{
+                /*InputLabelProps={{
                     style: {
                         color: '#999',
                     },
-                }}
+                }}*/
 
 
                 className={errorClass}

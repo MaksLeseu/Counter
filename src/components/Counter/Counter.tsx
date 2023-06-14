@@ -12,6 +12,7 @@ import {checkLS} from "../../common/localStorage/localStorage";
 import PlusOneIcon from '@mui/icons-material/PlusOne';
 import SettingsIcon from '@mui/icons-material/Settings';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import HomeIcon from '@mui/icons-material/Home';
 
 export const Counter = () => {
 
@@ -37,6 +38,10 @@ export const Counter = () => {
     return (
         <div className={s.counter}>
             <div className={s.counterContainer}>
+                <div className={s.mainScreen}>
+                    <div> <HomeIcon /> </div>
+                    <span>Main screen</span>
+                </div>
                 {checkLocalStorage ? <div className={s.message}>You need to set settings</div> : <Display />}
                 <div className={s.buttonContainer}>
                     <Buttons disabledButton={isDisabledInc || checkLocalStorage}

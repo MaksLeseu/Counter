@@ -10,6 +10,7 @@ import {InputSettingsDisplay} from "./InputSettingsDisplay/InputSettingsDisplay"
 import {saveState} from "../../common/localStorage/localStorage";
 import {Buttons} from "../Button/Button";
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 export const Settings = () => {
 
@@ -44,7 +45,7 @@ export const Settings = () => {
     }, [dispatch])
 
     const inputStyles = {
-        fontSize: '21px',
+        fontSize: '24px',
         textAlign: 'center',
     };
 
@@ -52,6 +53,7 @@ export const Settings = () => {
         <div className={s.settings}>
             <div className={s.settingsContainer}>
                 <div className={s.display}>
+                    <div className={s.settingsText}><div><SettingsIcon /></div> <div>Settings</div> </div>
                     <div className={s.containerValue}>
                         {/*<p>max value:</p>*/}
                         <InputSettingsDisplay

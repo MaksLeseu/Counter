@@ -2,16 +2,26 @@
     border: 2px black solid;
     width: 350px;
     height: 250px;
-    background-color: cornflowerblue;
+    background-color: #DCDCDC;
+    /*background-color: lightsteelblue;*/
+    /*background-color: black;*/
     border-radius: 5px;
     margin: 0 auto;
+    box-shadow: 1px 3px 10px black;
+}
+
+.mainScreen {
+    display: flex;
+}
+.mainScreen span {
+    padding-top: 2px;
 }
 
 .counterContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .buttonContainer {
