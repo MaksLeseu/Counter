@@ -9,6 +9,16 @@
     box-shadow: 1px 3px 10px black;
 }
 
+.settingsDarkMode {
+    border: 2px white solid;
+    width: 350px;
+    height: 250px;
+    background-color: black;
+    margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: 1px 3px 10px white;
+}
+
 .settingsText {
     color: black;
    /* border-bottom: 1px solid black;*/
@@ -55,8 +65,9 @@
     outline: none;
 }*/
 
+/*
 .errorValue {
     background-color: red;
     opacity: 0.6;
     border-radius: 5px;
-}
+}*/

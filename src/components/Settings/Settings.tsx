@@ -11,6 +11,7 @@ import {saveState} from "../../common/localStorage/localStorage";
 import {Buttons} from "../Button/Button";
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import SettingsIcon from '@mui/icons-material/Settings';
+import {darkModeSelector} from "../../state/selectors/darkMode-selectors";
 
 export const Settings = () => {
 
@@ -21,6 +22,7 @@ export const Settings = () => {
 
     const maxValue: number = useSelector(maxValueSelector)
     const startValue: number = useSelector(startValueSelector)
+    const isDarkMode: boolean = useSelector(darkModeSelector)
 
     const dispatch: Dispatch = useDispatch()
 
@@ -51,7 +53,7 @@ export const Settings = () => {
     };
 
     return (
-        <div className={s.settings}>
+        <div className={isDarkMode ? s.settingsDarkMode : s.settings}>
             <div className={s.settingsContainer}>
                 <div className={s.display}>
                     <div className={s.settingsText}>

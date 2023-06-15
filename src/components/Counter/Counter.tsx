@@ -13,12 +13,14 @@ import PlusOneIcon from '@mui/icons-material/PlusOne';
 import SettingsIcon from '@mui/icons-material/Settings';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import HomeIcon from '@mui/icons-material/Home';
+import {darkModeSelector} from "../../state/selectors/darkMode-selectors";
 
 export const Counter = () => {
 
     const counterValue: number = useSelector(counterValueSelector)
     const startValue: number = useSelector(startValueSelector)
     const disabledValue: number = useSelector(disabledValueSelector)
+    const isDarkMode: boolean = useSelector(darkModeSelector)
 
     const dispatch: Dispatch = useDispatch()
 
@@ -36,7 +38,7 @@ export const Counter = () => {
     const checkLocalStorage: boolean = checkLS('maxValue')
 
     return (
-        <div className={s.counter}>
+        <div className={isDarkMode ? s.counterDarkMode : s.counter}>
             <div className={s.counterContainer}>
                 <div className={s.mainScreen}>
                     <div> <HomeIcon /> </div>

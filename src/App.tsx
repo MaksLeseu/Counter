@@ -6,7 +6,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {setMaxValueAC, setStartValueAC} from "./state/reducers/settings-reducer";
 import {restoreState} from "./common/localStorage/localStorage";
 import {setCounterAC, setDisabledValueAC} from "./state/reducers/counter-reducer";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Dispatch} from "redux";
 import {
     AppBar, Checkbox,
@@ -18,10 +18,14 @@ import {
     ThemeProvider, Toolbar,
     Typography,
 } from "@mui/material";
+import {darkModeSelector} from "./state/selectors/darkMode-selectors";
+import {setDarkModeAC} from "./state/reducers/darkMode-reducer";
 
 
 function App() {
-    const [isDarkMode, setDarkMode] = useState<boolean>(false)
+    /*const [isDarkMode, setDarkMode] = useState<boolean>(false)*/
+
+    const isDarkMode: boolean = useSelector(darkModeSelector)
 
     const dispatch: Dispatch = useDispatch()
 
@@ -63,7 +67,7 @@ function App() {
                             <FormGroup>
                                 <FormControlLabel
                                     control={<Checkbox
-                                        onChange={(e) => setDarkMode(e.currentTarget.checked)} />}
+                                        onChange={(e) => dispatch(setDarkModeAC(e.currentTarget.checked))} />}
                                     label={isDarkMode ? 'Light mode' : 'Dark mode'}
                                 />
                             </FormGroup>
@@ -90,15 +94,4 @@ function App() {
 }
 
 export default App;
-
-/*<div className={'container'}>
-    <Routes>
-        <Route path={'/'} element={
-            <Counter />
-        } />
-        <Route path={'/settings'} element={
-            <Settings />
-        } />
-    </Routes>
-</div>*/
 

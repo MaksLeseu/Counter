@@ -12,11 +12,25 @@
     border-radius: 5px;
 }
 
-.lastValueStyle {
-    font-size: 70px;
-    color: #DC143C;
-}
 
 .displayMessageStyle {
     font-size: 20px;
+}
+
+.displayDarkMode {
+    width: 300px;
+    height: 110px;
+    border: 1px white solid;
+    margin-bottom: 35px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    border-radius: 5px;
+}
+
+.lastValueStyle {
+    font-size: 70px;
+    color: #DC143C;
 }
