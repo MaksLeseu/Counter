@@ -56,7 +56,7 @@ export const Counter = () => {
                     >
                         <RestartAltIcon />
                     </Buttons>
-                    <NavLink to={'/settings'}>
+                    <NavLink to={'/Counter/settings'}>
                         <Buttons
                         >
                             <SettingsIcon />

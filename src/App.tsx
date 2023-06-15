@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import {Counter} from "./components/Counter/Counter";
 import {Settings} from "./components/Settings/Settings";
@@ -72,7 +72,7 @@ function App() {
                                 <FormControlLabel
                                     control={
                                         <IconButton>
-                                            {isDarkMode ? <Brightness7Icon onClick={changeTheme} /> : <Brightness4Icon onClick={changeTheme} />}
+                                            {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
                                         </IconButton>
                                     }
                                     label={isDarkMode ? 'Light mode' : 'Dark mode'}
@@ -84,10 +84,10 @@ function App() {
                         <Grid container sx={{p: '30px 0'}}>
                             <div className={'container'}>
                                 <Routes>
-                                    <Route path={'/'} element={
+                                    <Route path={'/Counter'} element={
                                         <Counter />
                                     } />
-                                    <Route path={'/settings'} element={
+                                    <Route path={'/Counter/settings'} element={
                                         <Settings />
                                     } />
                                 </Routes>

@@ -80,7 +80,7 @@ export const Settings = () => {
                     </div>
                 </div>
                 <div className={s.buttonContainer}>
-                    <NavLink to={startValueLessThanZero || checkingMaxValueAndStartValue ? '#' : '/'} >
+                    <NavLink to={startValueLessThanZero || checkingMaxValueAndStartValue ? '#' : '/Counter'} >
                         <Buttons disabledButton={startValueLessThanZero || checkingMaxValueAndStartValue}
                                 onClick={setSettingsValue}
                         >
