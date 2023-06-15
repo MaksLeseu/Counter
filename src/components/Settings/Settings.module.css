@@ -58,4 +58,5 @@
 .errorValue {
     background-color: red;
     opacity: 0.6;
+    border-radius: 5px;
 }

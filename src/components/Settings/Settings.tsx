@@ -27,8 +27,8 @@ export const Settings = () => {
     const startValueLessThanZero: boolean = startValue < 0;
     const checkingMaxValueAndStartValue: boolean = maxValue === startValue || startValue > maxValue
 
-    const errorClassEqualValues: string = checkingMaxValueAndStartValue ? `${s.value} ${s.errorValue}`: `${s.value}`;
-    const errorClassStartValue: string = startValueLessThanZero || checkingMaxValueAndStartValue ? `${s.value} ${s.errorValue}`: `${s.value}`;
+    /*const errorClassEqualValues: string = checkingMaxValueAndStartValue ? `${s.value} ${s.errorValue}`: `${s.value}`;
+    const errorClassStartValue: string = startValueLessThanZero || checkingMaxValueAndStartValue ? `${s.value} ${s.errorValue}`: `${s.value}`;*/
 
     const setSettingsValue = (): void => {
         dispatch(setDisabledValueAC(maxValue))
@@ -61,18 +61,18 @@ export const Settings = () => {
                     <div className={s.containerValue}>
                         <InputSettingsDisplay
                             inputStyles={inputStyles}
-                            label={'max value:'}
+                            label={startValueLessThanZero || checkingMaxValueAndStartValue ? 'error' : 'max value:'}
                             value={maxValue}
-                            errorClass={errorClassEqualValues}
+                            errorClass={startValueLessThanZero || checkingMaxValueAndStartValue}
                             onChange={setInputMaxValue}
                         />
                     </div>
                     <div className={s.containerValue}>
                         <InputSettingsDisplay
                             inputStyles={inputStyles}
-                            label={'start value:'}
+                            label={startValueLessThanZero || checkingMaxValueAndStartValue ? 'error' : 'start value:'}
                             value={startValue}
-                            errorClass={errorClassStartValue}
+                            errorClass={startValueLessThanZero || checkingMaxValueAndStartValue}
                             onChange={setInputStartValue}
                         />
                     </div>

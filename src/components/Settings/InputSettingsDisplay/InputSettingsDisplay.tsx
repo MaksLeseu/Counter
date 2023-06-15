@@ -7,7 +7,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 type InputSettingsDisplayPropsType = {
     inputStyles: any
     value: number
-    errorClass: string
+    errorClass: boolean
     label: string
     /*onChange: (e: ChangeEvent<HTMLInputElement>) => void*/
     onChange: any
@@ -29,6 +29,7 @@ export const InputSettingsDisplay: FC<InputSettingsDisplayPropsType> = memo((pro
         <div className={s.inputField}>
             <TextField
                 fullWidth
+                error={errorClass}
                 id="filled-hidden-label-small"
                 margin="dense"
                 color="secondary"
@@ -49,7 +50,7 @@ export const InputSettingsDisplay: FC<InputSettingsDisplayPropsType> = memo((pro
                     ),
                 }}
 
-                className={errorClass}
+                /*className={errorClass}*/
                 type={"number"}
                 value={value}
                 onChange={onChange}
