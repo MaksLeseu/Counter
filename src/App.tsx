@@ -9,22 +9,22 @@ import {setCounterAC, setDisabledValueAC} from "./state/reducers/counter-reducer
 import {useDispatch, useSelector} from "react-redux";
 import {Dispatch} from "redux";
 import {
-    AppBar, Checkbox,
+    AppBar,
     Container,
     createTheme,
     CssBaseline, FormControlLabel,
     FormGroup,
-    Grid,
+    Grid, IconButton,
     ThemeProvider, Toolbar,
     Typography,
 } from "@mui/material";
 import {darkModeSelector} from "./state/selectors/darkMode-selectors";
 import {setDarkModeAC} from "./state/reducers/darkMode-reducer";
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 
 function App() {
-    /*const [isDarkMode, setDarkMode] = useState<boolean>(false)*/
-
     const isDarkMode: boolean = useSelector(darkModeSelector)
 
     const dispatch: Dispatch = useDispatch()
@@ -35,6 +35,10 @@ function App() {
         dispatch(setStartValueAC(restoreState<number>('startValue', 0)))
         dispatch(setCounterAC(restoreState<number>('startValue', 0)))
     }, [])
+
+    const changeTheme = () => {
+        dispatch(setDarkModeAC(!isDarkMode))
+    }
 
     const customTheme = createTheme({
         palette: {
@@ -66,8 +70,11 @@ function App() {
                             </Typography>
                             <FormGroup>
                                 <FormControlLabel
-                                    control={<Checkbox
-                                        onChange={(e) => dispatch(setDarkModeAC(e.currentTarget.checked))} />}
+                                    control={
+                                        <IconButton>
+                                            {isDarkMode ? <Brightness7Icon onClick={changeTheme} /> : <Brightness4Icon onClick={changeTheme} />}
+                                        </IconButton>
+                                    }
                                     label={isDarkMode ? 'Light mode' : 'Dark mode'}
                                 />
                             </FormGroup>
