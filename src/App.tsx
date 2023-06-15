@@ -72,7 +72,7 @@ function App() {
                                 <FormControlLabel
                                     control={
                                         <IconButton>
-                                            {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+                                            {isDarkMode ? <Brightness7Icon onClick={changeTheme} /> : <Brightness4Icon onClick={changeTheme} />}
                                         </IconButton>
                                     }
                                     label={isDarkMode ? 'Light mode' : 'Dark mode'}
