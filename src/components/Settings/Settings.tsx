@@ -58,7 +58,7 @@ export const Settings = () => {
                 <div className={s.display}>
                     <div className={s.settingsText}>
                         <div> <SettingsIcon /></div>
-                        <div>Settings</div>
+                        <span>Settings</span>
                     </div>
                     <div className={s.containerValue}>
                         <InputSettingsDisplay

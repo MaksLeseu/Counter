@@ -13,19 +13,17 @@
     border: 2px white solid;
     width: 350px;
     height: 250px;
-    background-color: black;
+    background-color: indigo;
     margin: 0 auto;
     border-radius: 5px;
     box-shadow: 1px 3px 10px white;
 }
 
 .settingsText {
-    color: black;
-   /* border-bottom: 1px solid black;*/
     display: flex;
 }
 .settingsText span {
-
+    padding-left: 3px;
 }
 
 .settingsContainer {
@@ -45,7 +43,6 @@
     width: 300px;
     height: 100%;
     margin-bottom: 20px;
-    color: white;
 }
 
 .containerValue {

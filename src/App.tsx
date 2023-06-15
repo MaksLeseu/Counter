@@ -43,8 +43,8 @@ function App() {
                 dark: '#ef6c00',
             },
             secondary: {
-                main: '#9c27b0',
-                dark: '#ef6c00',
+                main:  isDarkMode ?'#e8eaf6' : '#9c27b0',
+                dark: isDarkMode ? '#c5cae9' : '#ef6c00',
             },
             mode: isDarkMode ? 'dark' : 'light'
         },
