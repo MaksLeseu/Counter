@@ -36,8 +36,9 @@ function App() {
         dispatch(setCounterAC(restoreState<number>('startValue', 0)))
     }, [])
 
-    const changeTheme = () => {
+    const changeTheme = (event: any) => {
         dispatch(setDarkModeAC(!isDarkMode))
+        event.preventDefault();
     }
 
     const customTheme = createTheme({
@@ -71,8 +72,8 @@ function App() {
                             <FormGroup>
                                 <FormControlLabel
                                     control={
-                                        <IconButton>
-                                            {isDarkMode ? <Brightness7Icon onClick={changeTheme} /> : <Brightness4Icon onClick={changeTheme} />}
+                                        <IconButton onClick={changeTheme}>
+                                            {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
                                         </IconButton>
                                     }
                                     label={isDarkMode ? 'Light mode' : 'Dark mode'}
