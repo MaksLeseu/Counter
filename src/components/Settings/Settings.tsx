@@ -13,6 +13,12 @@ import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import SettingsIcon from '@mui/icons-material/Settings';
 import {darkModeSelector} from "../../state/selectors/darkMode-selectors";
 
+export type InputStylesType = {
+    fontSize: string
+    textAlign: string
+    paddingLeft: string
+}
+
 export const Settings = () => {
 
     const saveValueInLocalStorage = (maxValue: number, startValue: number): void => {
@@ -26,22 +32,9 @@ export const Settings = () => {
 
     const dispatch: Dispatch = useDispatch()
 
-    const startValueLessThanZero: boolean = startValue < 0;
-    const checkingMaxValueAndStartValue: boolean = maxValue === startValue || startValue > maxValue
-
-    /*const errorClassEqualValues: string = checkingMaxValueAndStartValue ? `${s.value} ${s.errorValue}`: `${s.value}`;
-    const errorClassStartValue: string = startValueLessThanZero || checkingMaxValueAndStartValue ? `${s.value} ${s.errorValue}`: `${s.value}`;*/
-    const errorValueLessZero: string = startValueLessThanZero ? 'Error - value less than 0' : '';
-    const errorStartValueGreaterMaxValue: string = startValue > maxValue ? 'Error - start value is greater than max value' : '';
-    const errorMaxValueEqualsStartValue: string = maxValue === startValue ? 'Error - max value and start value are equal' : '';
-
-    const labelMaxValue =  startValueLessThanZero || checkingMaxValueAndStartValue
-        ? errorStartValueGreaterMaxValue || errorMaxValueEqualsStartValue
-        : 'max value:';
-
-    const labelStartValue = startValueLessThanZero || checkingMaxValueAndStartValue
-        ?   errorValueLessZero || errorMaxValueEqualsStartValue
-        :   'start value:';
+    const startValueEqualsZero: boolean = startValue === 0;
+    const startValuePlusOneEqualsMaxValue: boolean = startValue + 1 === maxValue;
+    const maxValueMinusOneEqualsStartValue: boolean = maxValue - 1 === startValue;
 
 
     const setSettingsValue = (): void => {
@@ -50,19 +43,27 @@ export const Settings = () => {
         saveValueInLocalStorage(maxValue, startValue)
     }
 
-    const setInputMaxValue = useCallback((/*e: ChangeEvent<HTMLInputElement>*/ value: any): void => {
+    const setInputMaxValue = useCallback((/*e: ChangeEvent<HTMLInputElement>*/ value: number): void => {
         dispatch(setMaxValueAC(value))
     }, [dispatch])
 
-    const setInputStartValue = useCallback((/*e: ChangeEvent<HTMLInputElement>*/ value: any): void => {
+    const setInputStartValue = useCallback((/*e: ChangeEvent<HTMLInputElement>*/ value: number): void => {
         dispatch(setStartValueAC(value))
     }, [dispatch])
 
     const inputStyles = {
         fontSize: '24px',
         textAlign: 'center',
-        paddingLeft: '90px'
+        paddingLeft: '90px',
     };
+
+    const maxValueInputButton = (value: string): void => {
+        value === 'increment' ? setInputMaxValue(maxValue + 1) : setInputMaxValue(maxValue - 1)
+    }
+
+    const startValueInputButton = (value: string): void => {
+        value === 'increment' ? setInputStartValue(startValue + 1) : setInputStartValue(startValue - 1)
+    }
 
     return (
         <div className={isDarkMode ? s.settingsDarkMode : s.settings}>
@@ -74,26 +75,29 @@ export const Settings = () => {
                     </div>
                     <div className={s.containerValue}>
                         <InputSettingsDisplay
-                            inputStyles={inputStyles}
-                            label={labelMaxValue}
                             value={maxValue}
-                            errorClass={startValueLessThanZero || checkingMaxValueAndStartValue}
+                            label={'max value:'}
+                            disabledDecrement={maxValueMinusOneEqualsStartValue}
+                            inputStyles={inputStyles}
+                            onClick={maxValueInputButton}
                             onChange={setInputMaxValue}
                         />
                     </div>
                     <div className={s.containerValue}>
                         <InputSettingsDisplay
-                            inputStyles={inputStyles}
-                            label={labelStartValue}
                             value={startValue}
-                            errorClass={startValueLessThanZero || checkingMaxValueAndStartValue}
+                            label={'start value:'}
+                            disabledIncrement={startValuePlusOneEqualsMaxValue}
+                            disabledDecrement={startValueEqualsZero}
+                            inputStyles={inputStyles}
+                            onClick={startValueInputButton}
                             onChange={setInputStartValue}
                         />
                     </div>
                 </div>
                 <div className={s.buttonContainer}>
-                    <NavLink to={startValueLessThanZero || checkingMaxValueAndStartValue ? '#' : '/Counter'} className={s.navLink} >
-                        <Buttons disabledButton={startValueLessThanZero || checkingMaxValueAndStartValue}
+                    <NavLink to={'/Counter'} className={s.navLink} >
+                        <Buttons
                                  style={true}
                                  onClick={setSettingsValue}
                         >

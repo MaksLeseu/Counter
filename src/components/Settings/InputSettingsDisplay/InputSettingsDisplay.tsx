@@ -1,38 +1,30 @@
-import React, {ChangeEvent, FC, memo, useState} from "react";
-import {makeStyles, TextField, IconButton, InputAdornment} from "@mui/material";
+import React, {FC, memo} from "react";
+import {TextField, IconButton, InputAdornment, withStyles} from "@mui/material";
 import s from './InputSettingsDisplay.module.css'
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 
 type InputSettingsDisplayPropsType = {
-    inputStyles: any
     value: number
-    errorClass: boolean
     label: string
+    disabledIncrement?: boolean
+    disabledDecrement: boolean
+    inputStyles: any
     /*onChange: (e: ChangeEvent<HTMLInputElement>) => void*/
-    onChange: any
+    onClick: (value: string) => void
+    onChange: (e: any) => void
 }
 
-
 export const InputSettingsDisplay: FC<InputSettingsDisplayPropsType> = memo((props) => {
-    const {value, errorClass, onChange, label, inputStyles} = props
-
-    const handleIncrement = () => {
-        onChange(value + 1)
-    };
-
-    const handleDecrement = () => {
-        onChange(value - 1)
-    };
+    const {value, onChange, label, inputStyles, disabledIncrement, disabledDecrement, onClick} = props
 
     return (
         <div className={s.inputField}>
             <TextField
                 fullWidth
-                error={errorClass}
+                focused={false}
                 id="filled-hidden-label-small"
                 margin="dense"
-                color="secondary"
                 label={label}
                 variant="outlined"
                 size="small"
@@ -40,17 +32,24 @@ export const InputSettingsDisplay: FC<InputSettingsDisplayPropsType> = memo((pro
                     readOnly: true,
                     endAdornment: (
                         <InputAdornment position="end">
-                            <IconButton onClick={handleIncrement} size="small">
+                            <IconButton
+                                size="small"
+                                disabled={disabledIncrement}
+                                onClick={() => onClick('increment')}
+                            >
                                 <AddIcon />
                             </IconButton>
-                            <IconButton onClick={handleDecrement} size="small">
+                            <IconButton
+                                size="small"
+                                disabled={disabledDecrement}
+                                onClick={() => onClick('decrement')}
+                            >
                                 <RemoveIcon />
                             </IconButton>
                         </InputAdornment>
                     ),
                 }}
 
-                /*className={errorClass}*/
                 type={"number"}
                 value={value}
                 onChange={onChange}
