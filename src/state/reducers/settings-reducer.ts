@@ -1,4 +1,3 @@
-
 type StateType = {
     maxValue: number
     startValue: number

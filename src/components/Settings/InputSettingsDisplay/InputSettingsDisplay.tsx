@@ -1,5 +1,5 @@
 import React, {FC, memo} from "react";
-import {TextField, IconButton, InputAdornment, withStyles} from "@mui/material";
+import {TextField, IconButton, InputAdornment} from "@mui/material";
 import s from './InputSettingsDisplay.module.css'
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -9,14 +9,13 @@ type InputSettingsDisplayPropsType = {
     label: string
     disabledIncrement?: boolean
     disabledDecrement: boolean
-    inputStyles: any
-    /*onChange: (e: ChangeEvent<HTMLInputElement>) => void*/
     onClick: (value: string) => void
-    onChange: (e: any) => void
+    onChange: any
 }
 
+
 export const InputSettingsDisplay: FC<InputSettingsDisplayPropsType> = memo((props) => {
-    const {value, onChange, label, inputStyles, disabledIncrement, disabledDecrement, onClick} = props
+    const {value, onChange, label, disabledIncrement, disabledDecrement, onClick} = props
 
     return (
         <div className={s.inputField}>
@@ -53,7 +52,11 @@ export const InputSettingsDisplay: FC<InputSettingsDisplayPropsType> = memo((pro
                 type={"number"}
                 value={value}
                 onChange={onChange}
-                inputProps={{ style: inputStyles }}
+                inputProps={{ style: {
+                        fontSize: '24px',
+                        textAlign: 'center',
+                        paddingLeft: '90px',
+                    } }}
             >
             </TextField>
         </div>

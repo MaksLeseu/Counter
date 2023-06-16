@@ -1,4 +1,3 @@
-
 type StateType = {
     counterValue: number
     disabledValue: number

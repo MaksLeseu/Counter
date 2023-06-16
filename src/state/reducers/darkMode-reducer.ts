@@ -1,4 +1,3 @@
-
 type ActionType = {
     type: 'SET_MODE'
     mode: boolean

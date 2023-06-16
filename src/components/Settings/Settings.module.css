@@ -20,6 +20,7 @@
 
 .settingsText {
     display: flex;
+    margin-bottom: 5px;
 }
 .settingsText span {
     padding-left: 3px;

@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useCallback} from "react";
+import React, {useCallback} from "react";
 import s from './Settings.module.css'
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
@@ -12,12 +12,6 @@ import {Buttons} from "../Button/Button";
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import SettingsIcon from '@mui/icons-material/Settings';
 import {darkModeSelector} from "../../state/selectors/darkMode-selectors";
-
-export type InputStylesType = {
-    fontSize: string
-    textAlign: string
-    paddingLeft: string
-}
 
 export const Settings = () => {
 
@@ -43,26 +37,20 @@ export const Settings = () => {
         saveValueInLocalStorage(maxValue, startValue)
     }
 
-    const setInputMaxValue = useCallback((/*e: ChangeEvent<HTMLInputElement>*/ value: number): void => {
-        dispatch(setMaxValueAC(value))
+    const setInputMaxValue = useCallback((maxValue: number): void => {
+        dispatch(setMaxValueAC(maxValue))
     }, [dispatch])
 
-    const setInputStartValue = useCallback((/*e: ChangeEvent<HTMLInputElement>*/ value: number): void => {
-        dispatch(setStartValueAC(value))
+    const setInputStartValue = useCallback((startValue: number): void => {
+        dispatch(setStartValueAC(startValue))
     }, [dispatch])
 
-    const inputStyles = {
-        fontSize: '24px',
-        textAlign: 'center',
-        paddingLeft: '90px',
-    };
-
-    const maxValueInputButton = (value: string): void => {
-        value === 'increment' ? setInputMaxValue(maxValue + 1) : setInputMaxValue(maxValue - 1)
+    const maxValueInputButton = (valueMax: string): void => {
+        valueMax === 'increment' ? setInputMaxValue(maxValue + 1) : setInputMaxValue(maxValue - 1)
     }
 
-    const startValueInputButton = (value: string): void => {
-        value === 'increment' ? setInputStartValue(startValue + 1) : setInputStartValue(startValue - 1)
+    const startValueInputButton = (valueStart: string): void => {
+        valueStart === 'increment' ? setInputStartValue(startValue + 1) : setInputStartValue(startValue - 1)
     }
 
     return (
@@ -70,7 +58,7 @@ export const Settings = () => {
             <div className={s.settingsContainer}>
                 <div className={s.display}>
                     <div className={s.settingsText}>
-                        <div> <SettingsIcon /></div>
+                        <SettingsIcon />
                         <span>Settings</span>
                     </div>
                     <div className={s.containerValue}>
@@ -78,7 +66,6 @@ export const Settings = () => {
                             value={maxValue}
                             label={'max value:'}
                             disabledDecrement={maxValueMinusOneEqualsStartValue}
-                            inputStyles={inputStyles}
                             onClick={maxValueInputButton}
                             onChange={setInputMaxValue}
                         />
@@ -89,7 +76,6 @@ export const Settings = () => {
                             label={'start value:'}
                             disabledIncrement={startValuePlusOneEqualsMaxValue}
                             disabledDecrement={startValueEqualsZero}
-                            inputStyles={inputStyles}
                             onClick={startValueInputButton}
                             onChange={setInputStartValue}
                         />

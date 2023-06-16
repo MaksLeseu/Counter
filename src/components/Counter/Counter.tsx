@@ -41,10 +41,14 @@ export const Counter = () => {
         <div className={isDarkMode ? s.counterDarkMode : s.counter}>
             <div className={s.counterContainer}>
                 <div className={s.mainScreen}>
-                    <div> <HomeIcon /> </div>
+                    <HomeIcon />
                     <span>Main screen</span>
                 </div>
-                {checkLocalStorage ? <div className={s.message}>You need to set settings</div> : <Display />}
+                {
+                    checkLocalStorage
+                    ? <div className={s.message}>You need to set settings</div>
+                    : <Display />
+                }
                 <div className={s.buttonContainer}>
                     <Buttons disabledButton={isDisabledInc || checkLocalStorage}
                              onClick={addNumberInSetCounter}
