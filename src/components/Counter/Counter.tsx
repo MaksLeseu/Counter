@@ -47,12 +47,12 @@ export const Counter = () => {
                 {checkLocalStorage ? <div className={s.message}>You need to set settings</div> : <Display />}
                 <div className={s.buttonContainer}>
                     <Buttons disabledButton={isDisabledInc || checkLocalStorage}
-                            onClick={addNumberInSetCounter}
+                             onClick={addNumberInSetCounter}
                     >
                         <PlusOneIcon />
                     </Buttons>
                     <Buttons disabledButton={isDisabledReset}
-                            onClick={zeroingCounter}
+                             onClick={zeroingCounter}
                     >
                         <RestartAltIcon />
                     </Buttons>

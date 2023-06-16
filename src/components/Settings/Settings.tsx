@@ -82,7 +82,8 @@ export const Settings = () => {
                 <div className={s.buttonContainer}>
                     <NavLink to={startValueLessThanZero || checkingMaxValueAndStartValue ? '#' : '/Counter'} className={s.navLink} >
                         <Buttons disabledButton={startValueLessThanZero || checkingMaxValueAndStartValue}
-                                onClick={setSettingsValue}
+                                 style={true}
+                                 onClick={setSettingsValue}
                         >
                             <SaveAltIcon />
                         </Buttons>

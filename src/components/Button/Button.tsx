@@ -3,13 +3,14 @@ import s from './Button.module.css'
 import {Button} from "@mui/material";
 
 type ButtonPropsType = {
+    style?: boolean
     disabledButton?: boolean
     children: ReactNode
     onClick?: () => void
 }
 
 export const Buttons: FC<ButtonPropsType> = memo((props) => {
-    const {disabledButton, children, onClick,} = props
+    const {disabledButton, children, onClick, style} = props
     return (
         <div className={s.btn_container}>
             <Button
@@ -19,7 +20,7 @@ export const Buttons: FC<ButtonPropsType> = memo((props) => {
 
                 disabled={disabledButton}
                 onClick={onClick}
-                className={s.button}
+                className={style ? `${s.button} ${s.buttonSettings}` : `${s.button}`}
             >
                 {children}
             </Button>
