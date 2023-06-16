@@ -31,6 +31,18 @@ export const Settings = () => {
 
     /*const errorClassEqualValues: string = checkingMaxValueAndStartValue ? `${s.value} ${s.errorValue}`: `${s.value}`;
     const errorClassStartValue: string = startValueLessThanZero || checkingMaxValueAndStartValue ? `${s.value} ${s.errorValue}`: `${s.value}`;*/
+    const errorValueLessZero: string = startValueLessThanZero ? 'Error - value less than 0' : '';
+    const errorStartValueGreaterMaxValue: string = startValue > maxValue ? 'Error - start value is greater than max value' : '';
+    const errorMaxValueEqualsStartValue: string = maxValue === startValue ? 'Error - max value and start value are equal' : '';
+
+    const labelMaxValue =  startValueLessThanZero || checkingMaxValueAndStartValue
+        ? errorStartValueGreaterMaxValue || errorMaxValueEqualsStartValue
+        : 'max value:';
+
+    const labelStartValue = startValueLessThanZero || checkingMaxValueAndStartValue
+        ?   errorValueLessZero || errorMaxValueEqualsStartValue
+        :   'start value:';
+
 
     const setSettingsValue = (): void => {
         dispatch(setDisabledValueAC(maxValue))
@@ -63,7 +75,7 @@ export const Settings = () => {
                     <div className={s.containerValue}>
                         <InputSettingsDisplay
                             inputStyles={inputStyles}
-                            label={startValueLessThanZero || checkingMaxValueAndStartValue ? 'error' : 'max value:'}
+                            label={labelMaxValue}
                             value={maxValue}
                             errorClass={startValueLessThanZero || checkingMaxValueAndStartValue}
                             onChange={setInputMaxValue}
@@ -72,7 +84,7 @@ export const Settings = () => {
                     <div className={s.containerValue}>
                         <InputSettingsDisplay
                             inputStyles={inputStyles}
-                            label={startValueLessThanZero || checkingMaxValueAndStartValue ? 'error' : 'start value:'}
+                            label={labelStartValue}
                             value={startValue}
                             errorClass={startValueLessThanZero || checkingMaxValueAndStartValue}
                             onChange={setInputStartValue}
