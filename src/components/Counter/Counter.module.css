@@ -3,7 +3,6 @@
     width: 350px;
     height: 250px;
     background-color: #DCDCDC;
-    /*background-color: lightsteelblue;*/
     border-radius: 5px;
     margin: 0 auto;
     box-shadow: 1px 3px 10px black;
@@ -49,4 +48,28 @@
     border-radius: 5px;
     margin: 0 auto;
     box-shadow: 1px 3px 10px white;
+}
+
+@media(max-width:375px) {
+    .counter {
+        width: 330px;
+        height: 250px;
+    }
+
+    .counterDarkMode {
+        width: 330px;
+        height: 250px;
+    }
+}
+
+@media(max-width:355px) {
+    .counter {
+        width: 310px;
+        height: 240px;
+    }
+
+    .counterDarkMode {
+        width: 310px;
+        height: 240px;
+    }
 }

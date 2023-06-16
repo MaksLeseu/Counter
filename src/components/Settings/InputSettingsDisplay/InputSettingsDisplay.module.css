@@ -2,3 +2,9 @@
     width: 300px;
 }
 
+@media(max-width:375px) {
+    .inputField {
+        width: 280px;
+        margin: 0 auto;
+    }
+}

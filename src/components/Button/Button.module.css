@@ -6,5 +6,11 @@
 .btn_container {
     margin-left: 10px;
     margin-right: 10px;
-    /*box-shadow: 1px 1px 3px black;*/
+}
+
+@media(max-width:355px) {
+    .btn_container {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
 }

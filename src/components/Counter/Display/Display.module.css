@@ -34,3 +34,15 @@
     font-size: 70px;
     color: #DC143C;
 }
+
+@media(max-width:355px) {
+    .display {
+        width: 280px;
+        height: 100px;
+    }
+
+    .displayDarkMode {
+        width: 280px;
+        height: 100px;
+    }
+}

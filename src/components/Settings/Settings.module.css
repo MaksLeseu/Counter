@@ -3,7 +3,6 @@
     width: 350px;
     height: 250px;
     background-color: #DCDCDC;
-    /*background-color: lightsteelblue;*/
     margin: 0 auto;
     border-radius: 5px;
     box-shadow: 1px 3px 10px black;
@@ -49,22 +48,30 @@
     display: flex;
 }
 
-/*.containerValue p {
-    color: white;
-    font-size: 15px;
-    margin-left: 10px;
-    margin-right: 20px;
-}*/
+@media(max-width:375px) {
+    .settings {
+        width: 330px;
+        height: 250px;
+    }
 
-/*.value {
-    font-size: 18px;
-    font-weight: 700;
-    outline: none;
-}*/
+    .settingsDarkMode {
+        width: 330px;
+        height: 250px;
+    }
+}
 
-/*
-.errorValue {
-    background-color: red;
-    opacity: 0.6;
-    border-radius: 5px;
-}*/
+@media(max-width:355px) {
+    .settings {
+        width: 310px;
+        height: 240px;
+    }
+
+    .settingsDarkMode {
+        width: 310px;
+        height: 240px;
+    }
+
+    .settingsText {
+        justify-content: center;
+    }
+}
