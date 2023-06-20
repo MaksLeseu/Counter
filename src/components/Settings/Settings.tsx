@@ -82,7 +82,7 @@ export const Settings = () => {
                     </div>
                 </div>
                 <div className={s.buttonContainer}>
-                    <NavLink to={'/Counter'} className={s.navLink} >
+                    <NavLink to={'/counter'} className={s.navLink} >
                         <Buttons
                                  style={true}
                                  onClick={setSettingsValue}

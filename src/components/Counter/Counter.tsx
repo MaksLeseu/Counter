@@ -31,7 +31,7 @@ export const Counter = () => {
         dispatch(setCounterAC(counterValue + 1));
     }
 
-    const zeroingCounter = (): void => {
+    const resetCounter = (): void => {
         dispatch(setCounterAC(startValue));
     }
 
@@ -56,11 +56,11 @@ export const Counter = () => {
                         <PlusOneIcon />
                     </Buttons>
                     <Buttons disabledButton={isDisabledReset}
-                             onClick={zeroingCounter}
+                             onClick={resetCounter}
                     >
                         <RestartAltIcon />
                     </Buttons>
-                    <NavLink to={'/Counter/settings'}>
+                    <NavLink to={'/counter/settings'}>
                         <Buttons
                         >
                             <SettingsIcon />

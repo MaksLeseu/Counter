@@ -24,7 +24,9 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 
-function App() {
+const App = () => {
+    const lightMode = 'Light mode';
+    const darkMode = 'Dark mode';
     const isDarkMode: boolean = useSelector(darkModeSelector)
 
     const dispatch: Dispatch = useDispatch()
@@ -36,9 +38,9 @@ function App() {
         dispatch(setCounterAC(restoreState<number>('startValue', 0)))
     }, [])
 
-    const changeTheme = (event: any) => {
-        dispatch(setDarkModeAC(!isDarkMode))
+    const changeTheme = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
+        dispatch(setDarkModeAC(!isDarkMode))
     }
 
     const customTheme = createTheme({
@@ -76,7 +78,7 @@ function App() {
                                             {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
                                         </IconButton>
                                     }
-                                    label={isDarkMode ? 'Light mode' : 'Dark mode'}
+                                    label={isDarkMode ? lightMode : darkMode}
                                 />
                             </FormGroup>
                         </Toolbar>
@@ -85,10 +87,10 @@ function App() {
                         <Grid container sx={{p: '30px 0'}}>
                             <div className={'container'}>
                                 <Routes>
-                                    <Route path={'/Counter'} element={
+                                    <Route path={'/counter'} element={
                                         <Counter />
                                     } />
-                                    <Route path={'/Counter/settings'} element={
+                                    <Route path={'/counter/settings'} element={
                                         <Settings />
                                     } />
                                 </Routes>
