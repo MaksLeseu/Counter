@@ -1,4 +1,4 @@
-import React, {FC, memo} from "react";
+import React, {ChangeEvent, FC, memo} from "react";
 import {TextField, IconButton, InputAdornment} from "@mui/material";
 import s from './InputSettingsDisplay.module.css'
 import AddIcon from '@mui/icons-material/Add';
@@ -10,7 +10,7 @@ type InputSettingsDisplayPropsType = {
     disabledIncrement?: boolean
     disabledDecrement: boolean
     onClick: (value: string) => void
-    onChange: any
+    onChange: (event: number) => void
 }
 
 
@@ -47,16 +47,16 @@ export const InputSettingsDisplay: FC<InputSettingsDisplayPropsType> = memo((pro
                             </IconButton>
                         </InputAdornment>
                     ),
+                    sx: {
+                        textAlign: 'center',
+                        paddingLeft: '125px',
+                    }
                 }}
 
+                className={s.inp}
                 type={"number"}
                 value={value}
-                onChange={onChange}
-                inputProps={{ style: {
-                        fontSize: '24px',
-                        textAlign: 'center',
-                        paddingLeft: '90px',
-                    } }}
+                onChange={(event) => onChange(+event.target.value)}
             >
             </TextField>
         </div>

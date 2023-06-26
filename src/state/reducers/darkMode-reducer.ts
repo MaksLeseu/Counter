@@ -11,7 +11,7 @@ const initialState: StateType = {
     mode: false
 }
 
-export const darkModeReducer = (state = initialState, action: any) => {
+export const darkModeReducer = (state = initialState, action: ActionType) => {
     switch (action.type) {
         case 'SET_MODE' :
             return {

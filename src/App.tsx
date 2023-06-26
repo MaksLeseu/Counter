@@ -10,8 +10,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Dispatch} from "redux";
 import {
     AppBar,
-    Container,
-    createTheme,
+    Container, createTheme,
     CssBaseline, FormControlLabel,
     FormGroup,
     Grid, IconButton,
@@ -22,13 +21,11 @@ import {darkModeSelector} from "./state/selectors/darkMode-selectors";
 import {setDarkModeAC} from "./state/reducers/darkMode-reducer";
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
+import {DARK_MODE, LIGHT_MODE} from "./common/theme/theme";
 
 
 const App = () => {
-    const lightMode = 'Light mode';
-    const darkMode = 'Dark mode';
     const isDarkMode: boolean = useSelector(darkModeSelector)
-
     const dispatch: Dispatch = useDispatch()
 
     useEffect(() => {
@@ -78,7 +75,7 @@ const App = () => {
                                             {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
                                         </IconButton>
                                     }
-                                    label={isDarkMode ? lightMode : darkMode}
+                                    label={isDarkMode ? LIGHT_MODE : DARK_MODE}
                                 />
                             </FormGroup>
                         </Toolbar>
