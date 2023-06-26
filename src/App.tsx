@@ -10,18 +10,18 @@ import {useDispatch, useSelector} from "react-redux";
 import {Dispatch} from "redux";
 import {
     AppBar,
-    Container, createTheme,
+    Container,
     CssBaseline, FormControlLabel,
     FormGroup,
     Grid, IconButton,
-    ThemeProvider, Toolbar,
+    Toolbar,
     Typography,
 } from "@mui/material";
 import {darkModeSelector} from "./state/selectors/darkMode-selectors";
 import {setDarkModeAC} from "./state/reducers/darkMode-reducer";
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import {DARK_MODE, LIGHT_MODE} from "./common/theme/theme";
+import {DARK_MODE, LIGHT_MODE, Theme} from "./common/Theme/Theme";
 
 
 const App = () => {
@@ -40,23 +40,9 @@ const App = () => {
         dispatch(setDarkModeAC(!isDarkMode))
     }
 
-    const customTheme = createTheme({
-        palette: {
-            primary: {
-                main: '#9c27b0',
-                dark: '#ef6c00',
-            },
-            secondary: {
-                main:  isDarkMode ?'#e8eaf6' : '#9c27b0',
-                dark: isDarkMode ? '#c5cae9' : '#ef6c00',
-            },
-            mode: isDarkMode ? 'dark' : 'light'
-        },
-    })
-
     return (
         <BrowserRouter>
-            <ThemeProvider theme={customTheme}>
+            <Theme>
                 <CssBaseline />
                 <div className="App">
                     <AppBar position={'static'}>
@@ -95,7 +81,7 @@ const App = () => {
                         </Grid>
                     </Container>
                 </div>
-            </ThemeProvider>
+            </Theme>
         </BrowserRouter>
     );
 }
