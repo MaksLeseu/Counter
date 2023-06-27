@@ -7,7 +7,7 @@ import {darkModeReducer} from "./reducers/darkMode-reducer";
 const rootReducer = combineReducers({
     counter: counterReducer,
     settings: settingsReducer,
-    isDarkMode: darkModeReducer
+    colorMode: darkModeReducer
 })
 
 export const store = legacy_createStore(rootReducer)

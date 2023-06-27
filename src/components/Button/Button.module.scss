@@ -1,0 +1,27 @@
+.button {
+  width: 90px;
+  height: 40px;
+
+  &.buttonSettings {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+
+.btn_container {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+@media(max-width:355px) {
+  .btn_container {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .buttonSettings {
+    right: 5px;
+  }
+}

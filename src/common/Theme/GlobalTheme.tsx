@@ -1,31 +1,19 @@
 import {createTheme, styled, ThemeProvider} from "@mui/material";
-import {useSelector} from "react-redux";
-import {darkModeSelector} from "../../state/selectors/darkMode-selectors";
-import React, {ReactNode, useState} from "react";
+import React, {ReactNode} from "react";
 import Box from '@mui/material/Box';
-import {amber, lightGreen, purple} from "@mui/material/colors";
+import {useSelector} from "react-redux";
+import {colorModeSelector} from "../../state/selectors/darkMode-selectors";
 
 type ThemeType = {
-    isDarkMode: boolean
     children: ReactNode
 }
 
 
-export const GlobalTheme: React.FC<ThemeType> = ({isDarkMode, children}) => {
-    /*const isDarkMode: boolean = useSelector(darkModeSelector)*/
-    const mode = isDarkMode ? 'dark' : 'light'
+export const GlobalTheme: React.FC<ThemeType> = ({children}) => {
+    const colorMode: string = useSelector(colorModeSelector)
 
-
-    const customTheme = createTheme({
+    const lightCustomTheme = createTheme({
         palette: {
-            /*primary: {
-                main: '#9c27b0',
-                dark: '#ef6c00',
-            },*/
-            /*secondary: {
-                main:  isDarkMode ? '#e8eaf6' : '#9c27b0',
-                dark: isDarkMode ? '#c5cae9' : '#ef6c00',
-            },*/
             primary: {
                 main: '#9c27b0',
                 dark: '#ef6c00',
@@ -34,25 +22,29 @@ export const GlobalTheme: React.FC<ThemeType> = ({isDarkMode, children}) => {
                 main: '#9c27b0',
                 dark: '#ef6c00',
             },
-            mode: mode,
-        },
-        components: {
-            MuiButton: {
-                styleOverrides: {
-                    root: mode === 'dark'
-                        ?
-                        {
-                            backgroundColor: '#e8eaf6',
-                            color: 'black',
-                        }
-                        :   {}
-                }
-            },
+            mode: 'light',
         },
     })
 
+    const darkCustomTheme = createTheme({
+        palette: {
+            primary: {
+                main: '#9c27b0',
+                dark: '#ef6c00',
+            },
+            secondary: {
+                main: '#e8eaf6',
+                dark: '#c5cae9',
+            },
+            mode: 'dark',
+        }
+    })
+
+    const mode = colorMode === 'light'
+        ? lightCustomTheme : darkCustomTheme
+
     return (
-        <ThemeProvider theme={customTheme}>
+        <ThemeProvider theme={mode}>
             {children}
         </ThemeProvider>
     )

@@ -1,5 +1,5 @@
 import React, {FC, memo, ReactNode} from "react";
-import s from './Button.module.css'
+import s from './Button.module.scss'
 import {Button} from "@mui/material";
 
 type ButtonPropsType = {

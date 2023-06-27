@@ -1,5 +1,5 @@
 import React, {useCallback} from "react";
-import s from './Settings.module.css'
+import s from './Settings.module.scss'
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {setCounterAC, setDisabledValueAC} from "../../state/reducers/counter-reducer";
@@ -11,8 +11,7 @@ import {saveState} from "../../common/localStorage/localStorage";
 import {Buttons} from "../Button/Button";
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import SettingsIcon from '@mui/icons-material/Settings';
-import {darkModeSelector} from "../../state/selectors/darkMode-selectors";
-import {SettingsCustomized} from "../../common/Theme/GlobalTheme";
+import {colorModeSelector} from "../../state/selectors/darkMode-selectors";
 
 export const Settings = () => {
 
@@ -23,7 +22,7 @@ export const Settings = () => {
 
     const maxValue: number = useSelector(maxValueSelector)
     const startValue: number = useSelector(startValueSelector)
-    const isDarkMode: boolean = useSelector(darkModeSelector)
+    const colorMode: string = useSelector(colorModeSelector)
 
     const dispatch: Dispatch = useDispatch()
 
@@ -55,17 +54,7 @@ export const Settings = () => {
     }
 
     return (
-        /*<div className={isDarkMode ? s.settingsDarkMode : s.settings}>
-
-        </div>*/
-        <SettingsCustomized
-            sx={{
-                width: '350px',
-                height: '250px',
-                margin: '0 auto',
-                borderRadius: '5px',
-            }}
-        >
+        <div className={colorMode === 'dark' ? `${s.settingsDarkMode} ${s.settings}` : s.settings}>
             <div className={s.settingsContainer}>
                 <div className={s.display}>
                     <div className={s.settingsText}>
@@ -103,6 +92,6 @@ export const Settings = () => {
                     </NavLink>
                 </div>
             </div>
-        </SettingsCustomized>
+        </div>
     )
 }

@@ -1,3 +1,3 @@
 import {AppRootStateType} from "../store";
 
-export const darkModeSelector = (state: AppRootStateType): boolean => state.isDarkMode.mode
+export const colorModeSelector = (state: AppRootStateType): string => state.colorMode.mode

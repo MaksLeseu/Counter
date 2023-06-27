@@ -1,6 +1,6 @@
-import React, {ChangeEvent, FC, memo} from "react";
+import React, {FC, memo} from "react";
 import {TextField, IconButton, InputAdornment} from "@mui/material";
-import s from './InputSettingsDisplay.module.css'
+import s from './InputSettingsDisplay.module.scss'
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 
@@ -49,11 +49,11 @@ export const InputSettingsDisplay: FC<InputSettingsDisplayPropsType> = memo((pro
                     ),
                     sx: {
                         textAlign: 'center',
-                        paddingLeft: '125px',
+                        paddingLeft: '120px',
                     }
                 }}
 
-                className={s.inp}
+                className={s.input}
                 type={"number"}
                 value={value}
                 onChange={(event) => onChange(+event.target.value)}

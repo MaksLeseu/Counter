@@ -1,19 +1,23 @@
 type ActionType = {
-    type: 'SET_MODE'
-    mode: boolean
+    type: 'SET_LIGHT' | 'SET_DARK'
+    mode: 'light' | 'dark'
 }
 
 type StateType = {
-    mode: boolean
+    mode: string
 }
 
 const initialState: StateType = {
-    mode: false
+    mode: 'light'
 }
 
 export const darkModeReducer = (state = initialState, action: ActionType) => {
     switch (action.type) {
-        case 'SET_MODE' :
+        case 'SET_LIGHT' :
+            return {
+                ...state, mode: action.mode
+            }
+        case 'SET_DARK' :
             return {
                 ...state, mode: action.mode
             }
@@ -22,4 +26,5 @@ export const darkModeReducer = (state = initialState, action: ActionType) => {
     }
 }
 
-export const setDarkModeAC = (mode: boolean): ActionType => ({type: 'SET_MODE', mode})
+export const setLightModeAC = (mode: 'light'): ActionType => ({type: 'SET_LIGHT', mode})
+export const setDarkModeAC = (mode: 'dark'): ActionType => ({type: 'SET_DARK', mode})

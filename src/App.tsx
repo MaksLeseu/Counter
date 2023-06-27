@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import {Counter} from "./components/Counter/Counter";
 import {Settings} from "./components/Settings/Settings";
@@ -10,23 +10,22 @@ import {useDispatch, useSelector} from "react-redux";
 import {Dispatch} from "redux";
 import {
     AppBar,
-    Container, createTheme,
+    Container,
     CssBaseline, FormControlLabel,
     FormGroup,
     Grid, IconButton,
     Toolbar,
     Typography,
 } from "@mui/material";
-import {darkModeSelector} from "./state/selectors/darkMode-selectors";
-import {setDarkModeAC} from "./state/reducers/darkMode-reducer";
+import {setDarkModeAC, setLightModeAC} from "./state/reducers/darkMode-reducer";
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import {DARK_MODE, LIGHT_MODE, GlobalTheme} from "./common/Theme/GlobalTheme";
+import {colorModeSelector} from "./state/selectors/darkMode-selectors";
 
 
 const App = () => {
-    /*const isDarkMode: boolean = useSelector(darkModeSelector)*/
-    const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
+    const colorMode: string = useSelector(colorModeSelector)
     const dispatch: Dispatch = useDispatch()
 
     useEffect(() => {
@@ -38,16 +37,19 @@ const App = () => {
 
     const changeTheme = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        /*dispatch(setDarkModeAC(!isDarkMode))*/
-        setIsDarkMode(!isDarkMode)
+        colorMode === 'light'
+            ?
+                dispatch(setDarkModeAC('dark'))
+            :
+                dispatch(setLightModeAC('light'))
     }
 
-    const icon = isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />
-    const label = isDarkMode ? LIGHT_MODE : DARK_MODE
+    const icon = colorMode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />
+    const label = colorMode === 'dark' ? LIGHT_MODE : DARK_MODE
 
     return (
         <BrowserRouter>
-            <GlobalTheme isDarkMode={isDarkMode}>
+            <GlobalTheme>
                 <CssBaseline />
                 <div className="App">
                     <AppBar position={'static'}>
