@@ -3,7 +3,7 @@ import s from './Display.module.css'
 import {useSelector} from "react-redux";
 import {counterValueSelector, disabledValueSelector} from "../../../state/selectors/counter-selectors";
 import {darkModeSelector} from "../../../state/selectors/darkMode-selectors";
-
+import {DisplayCustomized} from "../../../common/Theme/GlobalTheme";
 
 
 export const Display = () => {
@@ -15,6 +15,19 @@ export const Display = () => {
     const errorStyle: string = +counterValue >= disabledValue ? `${displayStyleMode} ${s.lastValueStyle}` : `${displayStyleMode}`;
 
     return (
-        <div className={errorStyle}>{counterValue}</div>
+        /*<div className={errorStyle}>{counterValue}</div>*/
+        <DisplayCustomized
+            sx={{
+                width: 300,
+                height: 110,
+                marginBottom: '35px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                fontSize: '50px',
+                borderRadius: '5px',
+            }}
+        >
+            {counterValue}</DisplayCustomized>
     )
 }

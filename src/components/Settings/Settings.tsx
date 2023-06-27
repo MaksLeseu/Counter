@@ -12,6 +12,7 @@ import {Buttons} from "../Button/Button";
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import SettingsIcon from '@mui/icons-material/Settings';
 import {darkModeSelector} from "../../state/selectors/darkMode-selectors";
+import {SettingsCustomized} from "../../common/Theme/GlobalTheme";
 
 export const Settings = () => {
 
@@ -54,7 +55,17 @@ export const Settings = () => {
     }
 
     return (
-        <div className={isDarkMode ? s.settingsDarkMode : s.settings}>
+        /*<div className={isDarkMode ? s.settingsDarkMode : s.settings}>
+
+        </div>*/
+        <SettingsCustomized
+            sx={{
+                width: '350px',
+                height: '250px',
+                margin: '0 auto',
+                borderRadius: '5px',
+            }}
+        >
             <div className={s.settingsContainer}>
                 <div className={s.display}>
                     <div className={s.settingsText}>
@@ -84,14 +95,14 @@ export const Settings = () => {
                 <div className={s.buttonContainer}>
                     <NavLink to={'/counter'} className={s.navLink} >
                         <Buttons
-                                 style={true}
-                                 onClick={setSettingsValue}
+                            style={true}
+                            onClick={setSettingsValue}
                         >
                             <SaveAltIcon />
                         </Buttons>
                     </NavLink>
                 </div>
             </div>
-        </div>
+        </SettingsCustomized>
     )
 }

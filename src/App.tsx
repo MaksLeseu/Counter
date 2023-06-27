@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Counter} from "./components/Counter/Counter";
 import {Settings} from "./components/Settings/Settings";
@@ -10,7 +10,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Dispatch} from "redux";
 import {
     AppBar,
-    Container,
+    Container, createTheme,
     CssBaseline, FormControlLabel,
     FormGroup,
     Grid, IconButton,
@@ -21,11 +21,12 @@ import {darkModeSelector} from "./state/selectors/darkMode-selectors";
 import {setDarkModeAC} from "./state/reducers/darkMode-reducer";
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import {DARK_MODE, LIGHT_MODE, Theme} from "./common/Theme/Theme";
+import {DARK_MODE, LIGHT_MODE, GlobalTheme} from "./common/Theme/GlobalTheme";
 
 
 const App = () => {
-    const isDarkMode: boolean = useSelector(darkModeSelector)
+    /*const isDarkMode: boolean = useSelector(darkModeSelector)*/
+    const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
     const dispatch: Dispatch = useDispatch()
 
     useEffect(() => {
@@ -37,12 +38,16 @@ const App = () => {
 
     const changeTheme = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        dispatch(setDarkModeAC(!isDarkMode))
+        /*dispatch(setDarkModeAC(!isDarkMode))*/
+        setIsDarkMode(!isDarkMode)
     }
+
+    const icon = isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />
+    const label = isDarkMode ? LIGHT_MODE : DARK_MODE
 
     return (
         <BrowserRouter>
-            <Theme>
+            <GlobalTheme isDarkMode={isDarkMode}>
                 <CssBaseline />
                 <div className="App">
                     <AppBar position={'static'}>
@@ -58,10 +63,10 @@ const App = () => {
                                 <FormControlLabel
                                     control={
                                         <IconButton onClick={changeTheme}>
-                                            {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+                                            {icon}
                                         </IconButton>
                                     }
-                                    label={isDarkMode ? LIGHT_MODE : DARK_MODE}
+                                    label={label}
                                 />
                             </FormGroup>
                         </Toolbar>
@@ -81,7 +86,7 @@ const App = () => {
                         </Grid>
                     </Container>
                 </div>
-            </Theme>
+            </GlobalTheme>
         </BrowserRouter>
     );
 }
