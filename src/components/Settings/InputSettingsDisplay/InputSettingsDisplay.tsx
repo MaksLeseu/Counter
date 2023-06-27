@@ -49,7 +49,7 @@ export const InputSettingsDisplay: FC<InputSettingsDisplayPropsType> = memo((pro
                     ),
                     sx: {
                         textAlign: 'center',
-                        paddingLeft: '120px',
+                        paddingLeft: '123px',
                     }
                 }}
 

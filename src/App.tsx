@@ -37,11 +37,14 @@ const App = () => {
 
     const changeTheme = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        colorMode === 'light'
-            ?
+        switch (colorMode) {
+            case 'light' :
                 dispatch(setDarkModeAC('dark'))
-            :
+                break;
+            case 'dark' :
                 dispatch(setLightModeAC('light'))
+                break;
+        }
     }
 
     const icon = colorMode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />
