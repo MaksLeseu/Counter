@@ -1,53 +1,71 @@
-import React, {FC, useState} from "react";
+import React from "react";
 import {Display} from "./Display/Display";
-import {Button} from "../Button/Button";
-import s from './Counter.module.css'
+import {Buttons} from "../Button/Button";
+import s from './Counter.module.scss'
+import {NavLink} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {setCounterAC} from "../../state/reducers/counter-reducer";
+import {Dispatch} from "redux";
+import {counterValueSelector, disabledValueSelector} from "../../state/selectors/counter-selectors";
+import {startValueSelector} from "../../state/selectors/settings-selectors";
+import {checkLS} from "../../common/localStorage/localStorage";
+import PlusOneIcon from '@mui/icons-material/PlusOne';
+import SettingsIcon from '@mui/icons-material/Settings';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import HomeIcon from '@mui/icons-material/Home';
+import {colorModeSelector} from "../../state/selectors/colorMode-selectors";
 
-type CounterPropsType = {
-    counter: number
-    maxValue: number
-    startValue: number
+export const Counter = () => {
 
-    disabledBtnCounter: boolean
-    disabledValue: number
-    setCounter: (value: number) => void
-}
+    const counterValue: number = useSelector(counterValueSelector)
+    const startValue: number = useSelector(startValueSelector)
+    const disabledValue: number = useSelector(disabledValueSelector)
+    const colorMode: string = useSelector(colorModeSelector)
 
-export const Counter: FC<CounterPropsType> = (props) => {
-    const {counter, maxValue, startValue, disabledBtnCounter, disabledValue, setCounter,} = props
+    const dispatch: Dispatch = useDispatch()
 
-    const isDisabledInc: boolean = counter >= disabledValue || disabledBtnCounter;
-    const isDisabledReset: boolean = counter === startValue || disabledBtnCounter;
+    const isDisabledInc: boolean = counterValue >= disabledValue;
+    const isDisabledReset: boolean = counterValue === startValue;
 
-    const addNumberInSetCounter = () => {
-        setCounter(counter + 1);
+    const addNumberInSetCounter = (): void => {
+        dispatch(setCounterAC(counterValue + 1));
     }
 
-    const zeroingCounter = () => {
-        setCounter(startValue);
+    const resetCounter = (): void => {
+        dispatch(setCounterAC(startValue));
     }
+
+    const checkLocalStorage: boolean = checkLS('maxValue')
 
     return (
-        <div className={s.counter}>
+        <div className={colorMode === 'dark' ? `${s.counterDarkMode} ${s.counter}` : s.counter}>
             <div className={s.counterContainer}>
-                <Display
-                    counter={counter}
-                    maxValue={maxValue}
-                    startValue={startValue}
-                    disabledValue={disabledValue}
-                    disabledBtnCounter={disabledBtnCounter}
-                />
+                <div className={s.mainScreen}>
+                    <HomeIcon />
+                    <span>Main screen</span>
+                </div>
+                {
+                    checkLocalStorage
+                        ? <div className={s.message}>You need to set settings</div>
+                        : <Display />
+                }
                 <div className={s.buttonContainer}>
-                    <Button disabledButton={isDisabledInc}
-                            onClick={addNumberInSetCounter}
+                    <Buttons disabledButton={isDisabledInc || checkLocalStorage}
+                             onClick={addNumberInSetCounter}
                     >
-                        incr
-                    </Button>
-                    <Button disabledButton={isDisabledReset}
-                            onClick={zeroingCounter}
+                        <PlusOneIcon />
+                    </Buttons>
+                    <Buttons disabledButton={isDisabledReset}
+                             onClick={resetCounter}
                     >
-                        rest
-                    </Button>
+                        <RestartAltIcon />
+                    </Buttons>
+                    <NavLink to={'/counter/settings'}>
+                        <Buttons
+                        >
+                            <SettingsIcon />
+                        </Buttons>
+                    </NavLink>
                 </div>
             </div>
         </div>

@@ -1,54 +1,95 @@
-import React, {FC} from "react";
-import s from './Settings.module.css'
-import {Button} from "../Button/Button";
-import {SettingsDisplay} from "./SettingsDisplay/SettingsDisplay";
+import React, {useCallback} from "react";
+import s from './Settings.module.scss'
+import {NavLink} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {setCounterAC, setDisabledValueAC} from "../../state/reducers/counter-reducer";
+import {Dispatch} from "redux";
+import {maxValueSelector, startValueSelector} from "../../state/selectors/settings-selectors";
+import {setMaxValueAC, setStartValueAC} from "../../state/reducers/settings-reducer";
+import {InputSettingsDisplay} from "./InputSettingsDisplay/InputSettingsDisplay";
+import {saveState} from "../../common/localStorage/localStorage";
+import {Buttons} from "../Button/Button";
+import SaveAltIcon from '@mui/icons-material/SaveAlt';
+import SettingsIcon from '@mui/icons-material/Settings';
+import {colorModeSelector} from "../../state/selectors/colorMode-selectors";
 
-type SettingsPropsType = {
-    maxValue: number
-    startValue: number
-    disabledBtnCounter: boolean
+export const Settings = () => {
 
-    setMaxValue: (value: number) => void
-    setStartValue: (value: number) => void
-    setCounter: (value: number) => void
-    setDisabledValue: (value: number) => void
-    setDisabledBtnCounter: (value: boolean) => void
-    saveValueInLocalStorage: (maxValue: number, startValue: number) => void
-}
+    const saveValueInLocalStorage = (maxValue: number, startValue: number): void => {
+        saveState<number>('maxValue', maxValue)
+        saveState<number>('startValue', startValue)
+    }
 
-export const Settings: FC<SettingsPropsType> = (props) => {
-    const {maxValue, startValue, disabledBtnCounter, setMaxValue, setStartValue,
-        setCounter, setDisabledValue, setDisabledBtnCounter, saveValueInLocalStorage,} = props
+    const maxValue: number = useSelector(maxValueSelector)
+    const startValue: number = useSelector(startValueSelector)
+    const colorMode: string = useSelector(colorModeSelector)
 
-    const startValueLessThanZero = startValue < 0;
-    const checkingMaxValueAndStartValue = maxValue === startValue || startValue > maxValue
+    const dispatch: Dispatch = useDispatch()
 
-    const setSettingsValue = () => {
-        setDisabledValue(maxValue)
-        setDisabledBtnCounter(false)
-        setCounter(startValue)
+    const startValueEqualsZero: boolean = startValue === 0;
+    const startValuePlusOneEqualsMaxValue: boolean = startValue + 1 === maxValue;
+    const maxValueMinusOneEqualsStartValue: boolean = maxValue - 1 === startValue;
+
+
+    const setSettingsValue = (): void => {
+        dispatch(setDisabledValueAC(maxValue))
+        dispatch(setCounterAC(startValue))
         saveValueInLocalStorage(maxValue, startValue)
     }
 
-    return (
-        <div className={s.settings}>
-            <div className={s.settingsContainer}>
-                <SettingsDisplay
-                    maxValue={maxValue}
-                    startValue={startValue}
-                    startValueLessThanZero={startValueLessThanZero}
-                    checkingMaxValueAndStartValue={checkingMaxValueAndStartValue}
+    const setInputMaxValue = useCallback((maxValue: number): void => {
+        dispatch(setMaxValueAC(maxValue))
+    }, [dispatch])
 
-                    setStartValue={setStartValue}
-                    setMaxValue={setMaxValue}
-                    setDisabledBtnCounter={setDisabledBtnCounter}
-                />
+    const setInputStartValue = useCallback((startValue: number): void => {
+        dispatch(setStartValueAC(startValue))
+    }, [dispatch])
+
+    const maxValueInputButton = (valueMax: string): void => {
+        valueMax === 'increment' ? setInputMaxValue(maxValue + 1) : setInputMaxValue(maxValue - 1)
+    }
+
+    const startValueInputButton = (valueStart: string): void => {
+        valueStart === 'increment' ? setInputStartValue(startValue + 1) : setInputStartValue(startValue - 1)
+    }
+
+    return (
+        <div className={colorMode === 'dark' ? `${s.settingsDarkMode} ${s.settings}` : s.settings}>
+            <div className={s.settingsContainer}>
+                <div className={s.display}>
+                    <div className={s.settingsText}>
+                        <SettingsIcon />
+                        <span>Settings</span>
+                    </div>
+                    <div className={s.containerValue}>
+                        <InputSettingsDisplay
+                            value={maxValue}
+                            label={'max value:'}
+                            disabledDecrement={maxValueMinusOneEqualsStartValue}
+                            onClick={maxValueInputButton}
+                            onChange={setInputMaxValue}
+                        />
+                    </div>
+                    <div className={s.containerValue}>
+                        <InputSettingsDisplay
+                            value={startValue}
+                            label={'start value:'}
+                            disabledIncrement={startValuePlusOneEqualsMaxValue}
+                            disabledDecrement={startValueEqualsZero}
+                            onClick={startValueInputButton}
+                            onChange={setInputStartValue}
+                        />
+                    </div>
+                </div>
                 <div className={s.buttonContainer}>
-                    <Button disabledButton={!disabledBtnCounter || startValueLessThanZero || checkingMaxValueAndStartValue}
+                    <NavLink to={'/counter'} className={s.navLink} >
+                        <Buttons
+                            style={true}
                             onClick={setSettingsValue}
-                    >
-                        set
-                    </Button>
+                        >
+                            <SaveAltIcon />
+                        </Buttons>
+                    </NavLink>
                 </div>
             </div>
         </div>

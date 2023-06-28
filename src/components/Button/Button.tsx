@@ -1,19 +1,29 @@
-import React, {FC, ReactNode} from "react";
-import s from './Button.module.css'
+import React, {FC, memo, ReactNode} from "react";
+import s from './Button.module.scss'
+import {Button} from "@mui/material";
 
 type ButtonPropsType = {
-    disabledButton: boolean
+    style?: boolean
+    disabledButton?: boolean
     children: ReactNode
-    onClick: () => void
+    onClick?: () => void
 }
 
-export const Button: FC<ButtonPropsType> = (props) => {
-    const {disabledButton, children, onClick,} = props
+export const Buttons: FC<ButtonPropsType> = memo((props) => {
+    const {disabledButton, children, onClick, style} = props
     return (
-        <button disabled={disabledButton}
+        <div className={s.btn_container}>
+            <Button
+                variant="contained"
+                color="secondary"
+                disableElevation
+
+                disabled={disabledButton}
                 onClick={onClick}
-                className={s.button}>
-            {children}
-        </button>
+                className={style ? `${s.button} ${s.buttonSettings}` : `${s.button}`}
+            >
+                {children}
+            </Button>
+        </div>
     )
-}
+})

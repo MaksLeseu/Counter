@@ -1,27 +1,19 @@
-import React, {FC} from "react";
-import s from './Display.module.css'
+import React from "react";
+import s from './Display.module.scss'
+import {useSelector} from "react-redux";
+import {counterValueSelector, disabledValueSelector} from "../../../state/selectors/counter-selectors";
+import {colorModeSelector} from "../../../state/selectors/colorMode-selectors";
 
-type DisplayPropsType = {
-    counter: number
-    maxValue: number
-    startValue: number
 
-    disabledValue: number
-    disabledBtnCounter: boolean
-}
+export const Display = () => {
+    const counterValue: number = useSelector(counterValueSelector)
+    const disabledValue: number = useSelector(disabledValueSelector)
+    const colorMode: string = useSelector(colorModeSelector)
 
-export const Display: FC<DisplayPropsType> = (props) => {
-    const {counter, maxValue, startValue, disabledValue, disabledBtnCounter,} = props
-
-    const displayMessagePressSet = `enter values and press 'set'`;
-
-    const errorMessage = startValue < 0 ? `Incorrect value!`: '' || +maxValue === +startValue || +startValue > +maxValue ? `Incorrect value!`: '';
-    const displayMessage = disabledBtnCounter ? displayMessagePressSet : +counter;
-
-    const errorStyle: string = +counter >= disabledValue ? s.lastValueStyle: '';
-    const displayStyle = typeof displayMessage === 'number' ? `${s.display} ${errorStyle}` : `${s.display} ${s.displayMessageStyle}`;
+    const displayStyleMode: string = colorMode === 'dark' ? `${s.displayDarkMode} ${s.display}` : s.display
+    const errorStyle: string = +counterValue >= disabledValue ? `${displayStyleMode} ${s.lastValueStyle}` : `${displayStyleMode}`;
 
     return (
-        <div className={errorMessage ? `${s.display} ${s.lastValueStyle}` :displayStyle}>{errorMessage ? errorMessage: displayMessage}</div>
+        <div className={errorStyle}>{counterValue}</div>
     )
 }
