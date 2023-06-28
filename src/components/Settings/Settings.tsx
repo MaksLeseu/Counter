@@ -11,7 +11,7 @@ import {saveState} from "../../common/localStorage/localStorage";
 import {Buttons} from "../Button/Button";
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import SettingsIcon from '@mui/icons-material/Settings';
-import {colorModeSelector} from "../../state/selectors/darkMode-selectors";
+import {colorModeSelector} from "../../state/selectors/colorMode-selectors";
 
 export const Settings = () => {
 

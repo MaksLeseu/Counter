@@ -20,8 +20,8 @@ import {
 import {setDarkModeAC, setLightModeAC} from "./state/reducers/darkMode-reducer";
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import {DARK_MODE, LIGHT_MODE, GlobalTheme} from "./common/Theme/GlobalTheme";
-import {colorModeSelector} from "./state/selectors/darkMode-selectors";
+import {DARK_MODE, LIGHT_MODE, GlobalTheme} from "./common/components/GlobalTheme/GlobalTheme";
+import {colorModeSelector} from "./state/selectors/colorMode-selectors";
 
 
 const App = () => {

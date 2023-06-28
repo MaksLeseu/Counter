@@ -13,7 +13,7 @@ import PlusOneIcon from '@mui/icons-material/PlusOne';
 import SettingsIcon from '@mui/icons-material/Settings';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import HomeIcon from '@mui/icons-material/Home';
-import {colorModeSelector} from "../../state/selectors/darkMode-selectors";
+import {colorModeSelector} from "../../state/selectors/colorMode-selectors";
 
 export const Counter = () => {
 

@@ -2,7 +2,7 @@ import React from "react";
 import s from './Display.module.scss'
 import {useSelector} from "react-redux";
 import {counterValueSelector, disabledValueSelector} from "../../../state/selectors/counter-selectors";
-import {colorModeSelector} from "../../../state/selectors/darkMode-selectors";
+import {colorModeSelector} from "../../../state/selectors/colorMode-selectors";
 
 
 export const Display = () => {
