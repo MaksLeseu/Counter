@@ -35,7 +35,7 @@ export const Counter = () => {
         dispatch(setCounterAC(startValue));
     }
 
-    const checkLocalStorage: boolean = checkLS('maxValue')
+    const checkLocalStorage: boolean = checkLS('app-state')
 
     return (
         <div className={colorMode === 'dark' ? `${s.counterDarkMode} ${s.counter}` : s.counter}>

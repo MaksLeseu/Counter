@@ -7,18 +7,12 @@ import {Dispatch} from "redux";
 import {maxValueSelector, startValueSelector} from "../../state/selectors/settings-selectors";
 import {setMaxValueAC, setStartValueAC} from "../../state/reducers/settings-reducer";
 import {InputSettingsDisplay} from "./InputSettingsDisplay/InputSettingsDisplay";
-import {saveState} from "../../common/localStorage/localStorage";
 import {Buttons} from "../Button/Button";
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import SettingsIcon from '@mui/icons-material/Settings';
 import {colorModeSelector} from "../../state/selectors/colorMode-selectors";
 
 export const Settings = () => {
-
-    const saveValueInLocalStorage = (maxValue: number, startValue: number): void => {
-        saveState<number>('maxValue', maxValue)
-        saveState<number>('startValue', startValue)
-    }
 
     const maxValue: number = useSelector(maxValueSelector)
     const startValue: number = useSelector(startValueSelector)
@@ -34,7 +28,6 @@ export const Settings = () => {
     const setSettingsValue = (): void => {
         dispatch(setDisabledValueAC(maxValue))
         dispatch(setCounterAC(startValue))
-        saveValueInLocalStorage(maxValue, startValue)
     }
 
     const setInputMaxValue = useCallback((maxValue: number): void => {
