@@ -1,11 +1,8 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './App.css';
 import {Counter} from "./components/Counter/Counter";
 import {Settings} from "./components/Settings/Settings";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {setMaxValueAC, setStartValueAC} from "./state/reducers/settings-reducer";
-import {restoreState} from "./common/localStorage/localStorage";
-import {setCounterAC, setDisabledValueAC} from "./state/reducers/counter-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {Dispatch} from "redux";
 import {
@@ -27,13 +24,6 @@ import {colorModeSelector} from "./state/selectors/colorMode-selectors";
 const App = () => {
     const colorMode: string = useSelector(colorModeSelector)
     const dispatch: Dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(setMaxValueAC(restoreState<number>('maxValue', 5)))
-        dispatch(setDisabledValueAC(restoreState<number>('maxValue', 5)))
-        dispatch(setStartValueAC(restoreState<number>('startValue', 0)))
-        dispatch(setCounterAC(restoreState<number>('startValue', 0)))
-    }, [])
 
     const changeTheme = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
