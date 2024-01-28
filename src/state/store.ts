@@ -1,9 +1,9 @@
-import {applyMiddleware, combineReducers, legacy_createStore} from "redux";
+import {applyMiddleware, combineReducers, createStore, legacy_createStore} from "redux";
 import {counterReducer} from "./reducers/counter-reducer";
 import {settingsReducer} from "./reducers/settings-reducer";
 import {darkModeReducer} from "./reducers/darkMode-reducer";
 import {_saveState, loadState} from "../common/localStorage/localStorage";
-import thunk from 'redux-thunk'
+import thunkMiddleware from "redux-thunk"
 
 
 
@@ -13,15 +13,16 @@ const rootReducer = combineReducers({
     colorMode: darkModeReducer
 })
 
-export const store = legacy_createStore(rootReducer, loadState(), applyMiddleware(thunk))
+/*export const store = legacy_createStore(rootReducer, loadState(), applyMiddleware(thunk))*/
+export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
-store.subscribe(() => {
+/*store.subscribe(() => {
     _saveState({
         counter: store.getState().counter,
         settings: store.getState().settings,
         colorMode: store.getState().colorMode
     });
-});
+});*/
 
 
 

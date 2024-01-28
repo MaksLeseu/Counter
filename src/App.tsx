@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import {Counter} from "./components/Counter/Counter";
-import {Settings} from "./components/Settings/Settings";
+import Counter from "./components/Counter/Counter";
+import Settings from "./components/Settings/Settings";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {Dispatch} from "redux";
@@ -17,7 +17,7 @@ import {
 import {setDarkModeAC, setLightModeAC} from "./state/reducers/darkMode-reducer";
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import {DARK_MODE, LIGHT_MODE, GlobalTheme} from "./common/components/GlobalTheme/GlobalTheme";
+import  {DARK_MODE, LIGHT_MODE, GlobalTheme} from "./common/components/GlobalTheme/GlobalTheme";
 import {colorModeSelector} from "./state/selectors/colorMode-selectors";
 
 
