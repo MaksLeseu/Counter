@@ -1,10 +1,8 @@
 import React from "react";
-import Display from "./Display/Display";
-import Buttons from "../Button/Button";
 import s from './Counter.module.scss'
 import {NavLink} from "react-router-dom";
 import {connect, useDispatch, useSelector} from "react-redux";
-import {counterReducer, setCounterAC} from "../../state/reducers/counter-reducer";
+import {setCounterAC} from "../../state/reducers/counter-reducer";
 import {compose, Dispatch} from "redux";
 import {counterValueSelector, disabledValueSelector} from "../../state/selectors/counter-selectors";
 import {startValueSelector} from "../../state/selectors/settings-selectors";
@@ -15,6 +13,8 @@ import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import HomeIcon from '@mui/icons-material/Home';
 import {colorModeSelector} from "../../state/selectors/colorMode-selectors";
 import {AppRootStateType} from "../../state/store";
+import Buttons from "../Button/Button";
+import Display from "./Display/Display";
 
 export const _Counter = () => {
 
