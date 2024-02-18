@@ -9,26 +9,6 @@ type ButtonPropsType = {
     onClick?: () => void
 }
 
-/*export const Buttons: FC<ButtonPropsType> = memo((props) => {
-    console.log(1)
-    const {disabledButton, children, onClick, style} = props
-    return (
-        <div className={s.btn_container}>
-            <Button
-                variant="contained"
-                color="secondary"
-                disableElevation
-
-                disabled={disabledButton}
-                onClick={onClick}
-                className={style ? `${s.button} ${s.buttonSettings}` : `${s.button}`}
-            >
-                {children}
-            </Button>
-        </div>
-    )
-})*/
-
 class Buttons extends React.Component<ButtonPropsType> {
     render() {
         return (
